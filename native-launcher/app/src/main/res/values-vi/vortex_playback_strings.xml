@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="vortex_featured_next">Chương trình nổi bật tiếp theo</string>
+    <string name="vortex_synopsis_unavailable">Chưa có bản tóm tắt bằng ngôn ngữ của bạn. Mở chương trình để xem chi tiết.</string>
+    <string name="vortex_synopsis_frieren">Sau khi đánh bại Quỷ Vương, pháp sư yêu tinh sống lâu Frieren bắt đầu hành trình mới để thấu hiểu những mối gắn kết với các đồng đội.</string>
+    <string name="vortex_content_google_tv_open">Mở Google TV</string>
+    <string name="vortex_content_google_tv_error">Không thể mở Google TV.</string>
+    <string name="vortex_content_recommendation_description">Được %1$s đề xuất. Mở để xem chương trình và các lựa chọn xem.</string>
+    <string name="vortex_content_platform">Nền tảng: %1$s</string>
+    <string name="vortex_content_platform_unknown">Chưa xác minh nền tảng</string>
+    <string name="vortex_content_watch_options">Xem ở đâu</string>
+    <string name="vortex_content_artwork_note">Đây là hình ảnh nổi bật. Các lựa chọn xem mở trong trình duyệt; quyền truy cập và gói đăng ký tùy nhà cung cấp và khu vực.</string>
+    <string name="vortex_content_no_browser">Cài trình duyệt TV để mở các lựa chọn xem.</string>
+    <string name="vortex_content_youtube_open">Mở YouTube</string>
+    <string name="vortex_content_youtube_hint">Chưa có nội dung xem dở được chia sẻ. Một số TV không chia sẻ lịch sử YouTube tại đây; hãy xem Lịch sử trong YouTube.</string>
+</resources>

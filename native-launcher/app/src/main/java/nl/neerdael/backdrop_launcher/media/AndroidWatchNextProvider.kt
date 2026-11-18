@@ -28,11 +28,12 @@ internal class AndroidWatchNextProvider(private val context: Context) : WatchNex
             "aspectRatio" to TvContract.WatchNextPrograms.COLUMN_POSTER_ART_ASPECT_RATIO,
             "lastEngagementDate" to TvContract.WatchNextPrograms.COLUMN_LAST_ENGAGEMENT_TIME_UTC_MILLIS,
             "intentUri" to TvContract.WatchNextPrograms.COLUMN_INTENT_URI,
-            "watchNextType" to TvContract.WatchNextPrograms.COLUMN_WATCH_NEXT_TYPE)
+            "watchNextType" to TvContract.WatchNextPrograms.COLUMN_WATCH_NEXT_TYPE,
+            "browsable" to TvContract.WatchNextPrograms.COLUMN_BROWSABLE)
         val cursor = context.contentResolver.query(TvContract.WatchNextPrograms.CONTENT_URI,
             fields.values.toTypedArray(), null, null, "${TvContract.WatchNextPrograms.COLUMN_LAST_ENGAGEMENT_TIME_UTC_MILLIS} DESC")
             ?: throw IOException("Continue Watching provider is unavailable")
-        return cursor.use { it.rows(fields, 150).filter { row -> row.textOrNull("title") != null }.take(50) }
+        return cursor.use { it.rows(fields, 150).filter { row -> row.textOrNull("title") != null } }
     }
 
     override fun contentImage(uri: String, maxBytes: Int): ByteArray = context.providerImage(uri, maxBytes)

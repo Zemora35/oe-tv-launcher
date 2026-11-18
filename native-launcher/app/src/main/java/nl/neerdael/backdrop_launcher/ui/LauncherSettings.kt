@@ -209,6 +209,8 @@ internal fun LauncherSettings(initial: SettingsRoute, library: LibrarySnapshot, 
         }
         "interface" -> {
             title = "Interface"
+            entries += toggle("native.vortex.enabled", "Cinematic vortex home", default = true)
+            entries += toggle("native.vortex.reduce_motion", "Reduce cinematic motion")
             for ((id, label) in listOf("watch" to "Continue Watching", "backdrops" to "Backdrops", "status" to "Status bar", "accent" to "Accent color", "appearance" to "Appearance", "rowlayout" to "App row layout", "watchlayout" to "Continue Watching layout", "misc" to "Miscellaneous"))
                 entries += SettingsEntry(id, label) { go(id) }
         }
@@ -289,7 +291,7 @@ internal fun LauncherSettings(initial: SettingsRoute, library: LibrarySnapshot, 
             }
         }
         "memberships" -> {
-            title = "Rows for ${app?.label.orEmpty()}"
+            title = uiText("Rows for ${app?.label.orEmpty()}", LocalUiLanguage.current)
             if (app != null) model.rows.forEach { item -> entries += SettingsEntry("membership:${item.id}", item.name, localize = false,
                 checked = app.packageName in memberships[item.id].orEmpty(), enabled = item.id in memberships) { mutate { toggleRowMembership(actions.library, item.id, app.packageName) } } }
         }
@@ -465,7 +467,7 @@ internal fun LauncherSettings(initial: SettingsRoute, library: LibrarySnapshot, 
                 SettingsPanel(title, entries, artwork, active, artworkRevision, busy, error, translateTitle = page.section !in setOf("row", "app", "memberships"),
                     artworkGrid = page.section == "artwork",
                     lead = if (page.section == "auth") { { TraktActivation(auth, authStatus) } } else null) {
-                    if (!note.isNullOrBlank()) Text(note, Modifier.padding(top = 10.dp), style = NativeSettingsStyle.summaryStyle)
+                    if (!note.isNullOrBlank()) Text(uiText(note, LocalUiLanguage.current), Modifier.padding(top = 10.dp), style = NativeSettingsStyle.summaryStyle)
                     if (page.section == "update") (update ?: pending?.info)?.notes?.takeIf { it.isNotBlank() }?.let { ReadableText(it, Modifier.padding(top = 10.dp)) }
                 }
             }

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="vortex_quick_launch">Hızlı Başlat</string>
+    <string name="vortex_quick_launch_edit">Düzenle</string>
+    <string name="vortex_quick_launch_done">Bitti</string>
+    <string name="vortex_quick_launch_empty">Uygulamalarınızı eklemek için Düzenle’yi seçin.</string>
+    <string name="vortex_quick_launch_choose">OK: seç/kaldır · %1$d/%2$d seçili · Sıra, seçme sıranızdır · Bitti veya Geri ile kaydedin</string>
+    <string name="vortex_quick_launch_selected">Favori olarak seçili</string>
+    <string name="vortex_quick_launch_unselected">Seçili değil</string>
+    <string name="vortex_quick_launch_add">Hızlı Başlat’a ekle</string>
+    <string name="vortex_quick_launch_remove">Hızlı Başlat’tan kaldır</string>
+    <string name="vortex_quick_launch_limit">En fazla %1$d uygulama seçebilirsiniz. Yeni bir uygulama için önce birini kaldırın.</string>
+    <string name="vortex_quick_launch_save_error">Favoriler kaydedilemedi. Tekrar deneyin.</string>
+    <string name="vortex_grid_all_subtitle">O.E tv’de yüklü uygulamalarınıza göz atın ve başlatın.</string>
+    <string name="vortex_grid_history_subtitle">O.E tv üzerinden açtığınız uygulamalar ve son ziyaret zamanları.</string>
+    <string name="vortex_grid_search">Uygulama ara</string>
+    <string name="vortex_grid_history_search">Geçmiş uygulamalarda ara</string>
+    <string name="vortex_grid_filter">Filtre: %1$s</string>
+    <string name="vortex_grid_sort">Sırala: %1$s</string>
+    <string name="vortex_grid_type_all">Tümü</string>
+    <string name="vortex_grid_type_tv">TV uygulamaları</string>
+    <string name="vortex_grid_type_android">Diğer uygulamalar</string>
+    <string name="vortex_grid_category_all">Tümü</string>
+    <string name="vortex_grid_category_streaming">Yayın</string>
+    <string name="vortex_grid_category_media">Medya</string>
+    <string name="vortex_grid_category_tools">Araçlar</string>
+    <string name="vortex_grid_category_system">Sistem</string>
+    <string name="vortex_grid_sort_az">A–Z</string>
+    <string name="vortex_grid_sort_za">Z–A</string>
+    <string name="vortex_grid_sort_recent">Son ziyaret</string>
+    <string name="vortex_grid_no_results">Aramanızla veya filtrelerle eşleşen uygulama yok.</string>
+    <string name="vortex_grid_history_empty">O.E tv üzerinden açtığınız uygulamalar burada görünür.</string>
+    <string name="vortex_grid_time_unknown">Tarih kaydı yok</string>
+    <string name="vortex_grid_last_visit">Son ziyaret: %1$s</string>
+    <string name="vortex_grid_close">Geri</string>
+    <string name="vortex_grid_position">%1$d / %2$d</string>
+    <string name="vortex_grid_clear_search">Aramayı temizle</string>
+    <string name="vortex_grid_choose_filter">Uygulamaları filtrele</string>
+    <string name="vortex_grid_choose_sort">Uygulamaları sırala</string>
+    <string name="vortex_grid_open_app">%1$s uygulamasını aç</string>
+    <string name="vortex_grid_app_actions">Uygulama seçenekleri</string>
+</resources>

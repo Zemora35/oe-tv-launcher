@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="vortex_film_fight_club_title">Dövüş Kulübü</string>
+    <string name="vortex_film_fight_club_description">Sıradan hayatından bunalan bir adamın katıldığı dövüş kulübü, giderek kontrol edemediği bir harekete dönüşür.</string>
+    <string name="vortex_film_forrest_gump_title">Forrest Gump</string>
+    <string name="vortex_film_forrest_gump_description">Forrest, sevgi ve dostluğa bağlı kalarak Amerikan tarihinin önemli olayları içinden geçen sıra dışı bir hayat yaşar.</string>
+    <string name="vortex_film_inception_title">Başlangıç</string>
+    <string name="vortex_film_inception_description">Rüyalara girerek bilgi çalan bir uzman, bir insanın zihnine yeni bir fikir yerleştirme görevini üstlenir.</string>
+    <string name="vortex_film_interstellar_title">Yıldızlararası</string>
+    <string name="vortex_film_interstellar_description">Dünya yaşanamaz hale gelirken bir grup kâşif, insanlığa yeni bir yuva bulmak için yıldızların ötesine yolculuk eder.</string>
+    <string name="vortex_film_pulp_fiction_title">Ucuz Roman</string>
+    <string name="vortex_film_pulp_fiction_description">Los Angeles’ta iki tetikçi, bir boksör ve farklı insanların yolları, beklenmedik olaylarla kesişir.</string>
+    <string name="vortex_film_dark_knight_title">Kara Şövalye</string>
+    <string name="vortex_film_dark_knight_description">Batman, Gotham’ı kaosa sürükleyen Joker’le mücadele ederken şehri korumak için zor seçimlerle yüzleşir.</string>
+    <string name="vortex_film_godfather_title">Baba</string>
+    <string name="vortex_film_godfather_description">Corleone ailesinde güç ve sadakat sınanırken Michael, uzak durmak istediği suç dünyasının içine çekilir.</string>
+    <string name="vortex_film_lotr_title">Yüzüklerin Efendisi: Kralın Dönüşü</string>
+    <string name="vortex_film_lotr_description">Frodo ve Sam yüzüğü yok etmeye yaklaşırken dostları, Orta Dünya’nın kaderini belirleyecek son savaşa hazırlanır.</string>
+    <string name="vortex_film_matrix_title">Matrix</string>
+    <string name="vortex_film_matrix_description">Bir bilgisayar programcısı, yaşadığı dünyanın bir simülasyon olduğunu keşfederek insanlığın özgürlük mücadelesine katılır.</string>
+    <string name="vortex_film_shawshank_title">Esaretin Bedeli</string>
+    <string name="vortex_film_shawshank_description">Shawshank Hapishanesi’nde yolları kesişen iki adam, yıllar boyunca dostluklarını ve özgürlük umutlarını korur.</string>
+    <string name="vortex_backdrop_unknown_title">Arka plan bilgisi</string>
+    <string name="vortex_backdrop_unknown_description">Bu görsel için konu özeti paylaşılmamış.</string>
+    <string name="vortex_watch_next_permission">İzleme verilerine izin ver</string>
+    <string name="vortex_watch_next_permission_hint">Paylaşılan yarım kalmış içerikleri okumak için TV listeleri iznini verin.</string>
+    <string name="vortex_watch_next_refreshed">İzleme listesi yenilendi.</string>
+    <string name="vortex_watch_next_error">İzleme listesi yenilenemedi.</string>
+    <plurals name="vortex_resume_minutes_left">
+        <item quantity="one">%1$d dk. kaldı</item>
+        <item quantity="other">%1$d dk. kaldı</item>
+    </plurals>
+</resources>

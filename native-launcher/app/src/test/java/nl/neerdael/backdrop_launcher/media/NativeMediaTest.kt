@@ -271,11 +271,12 @@ class NativeMediaTest {
             putInt("watch_next_max_items", 1)
         }
         val provider = FeedProvider(listOf(
-            row(1, "Skip", "excluded"), row(2, "Resume", "pkg").put("duration", 1000).put("playbackPosition", 1500).put("intentUri", "wuplay://play/42").put("contentId", "internal-42"), row(3)))
+            row(1, "Skip", "excluded"), row(2, "Resume", "pkg").put("duration", 1000).put("playbackPosition", 500).put("intentUri", "wuplay://play/42").put("contentId", "internal-42"), row(3)))
         val feed = WatchNextFeed(prefs, provider, disk)
         val item = feed.refresh().single()
         assertEquals("Resume", item.title)
-        assertEquals(100, item.progress)
+        assertEquals(50, item.progress)
+        assertEquals(100, WatchNextFeed.progress(JSONObject().put("duration", 1000).put("playbackPosition", 1500)))
         assertEquals("wuplay://play/42", item.intentUri)
         assertEquals(2L, item.id)
         assertEquals("internal-42", item.contentId)
@@ -425,7 +426,7 @@ class NativeMediaTest {
     }
     private fun deviceResponse() = response(200, """{"device_code":"device","user_code":"ABCD","verification_url":"https://trakt.tv/activate","expires_in":600,"interval":5}""")
     private fun response(status: Int, body: String, headers: Map<String, String> = emptyMap()) = MediaResponse(status, headers, body.toByteArray())
-    private fun row(id: Int, title: String = "Item $id", pkg: String = "pkg") = JSONObject().put("id", id).put("title", title).put("packageName", pkg)
+    private fun row(id: Int, title: String = "Item $id", pkg: String = "pkg") = JSONObject().put("id", id).put("title", title).put("packageName", pkg).put("watchNextType", 0).put("progressPercent", 25)
     private fun withDisk(block: (MediaDisk) -> Unit) {
         val root = Files.createTempDirectory("native-media-test").toFile()
         try { block(MediaDisk(root) { it.isNotEmpty() }) } finally { root.deleteRecursively() }

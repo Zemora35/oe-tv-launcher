@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="vortex_film_fight_club_title">Fight Club</string>
+    <string name="vortex_film_fight_club_description">ينضم موظف إلى ناد سري للقتال، لكن تأثير النادي يتسع حتى يخرج عن السيطرة.</string>
+    <string name="vortex_film_forrest_gump_title">Forrest Gump</string>
+    <string name="vortex_film_forrest_gump_description">يمر فورست بمحطات بارزة من التاريخ الأمريكي، متمسكًا بالحب والصداقة.</string>
+    <string name="vortex_film_inception_title">Inception</string>
+    <string name="vortex_film_inception_description">يقبل خبير في دخول الأحلام مهمة زرع فكرة في عقل شخص آخر.</string>
+    <string name="vortex_film_interstellar_title">Interstellar</string>
+    <string name="vortex_film_interstellar_description">يبحث مستكشفون بين النجوم عن موطن جديد للبشرية بعدما تصبح الأرض غير صالحة للحياة.</string>
+    <string name="vortex_film_pulp_fiction_title">Pulp Fiction</string>
+    <string name="vortex_film_pulp_fiction_description">تتقاطع حياة قاتلين مأجورين وملاكم وأشخاص آخرين في لوس أنجلوس عبر أحداث غير متوقعة.</string>
+    <string name="vortex_film_dark_knight_title">The Dark Knight</string>
+    <string name="vortex_film_dark_knight_description">يواجه باتمان الجوكر الذي يهدد جوثام بالفوضى ويختبر خيارات حماة المدينة.</string>
+    <string name="vortex_film_godfather_title">The Godfather</string>
+    <string name="vortex_film_godfather_description">تواجه عائلة كورليوني صراعات السلطة والولاء بينما ينجذب مايكل إلى عالم الجريمة.</string>
+    <string name="vortex_film_lotr_title">The Lord of the Rings: The Return of the King</string>
+    <string name="vortex_film_lotr_description">يقترب فرودو وسام من جبل الهلاك بينما يستعد حلفاؤهما للمعركة الأخيرة من أجل الأرض الوسطى.</string>
+    <string name="vortex_film_matrix_title">The Matrix</string>
+    <string name="vortex_film_matrix_description">يكتشف مبرمج أن عالمه محاكاة وينضم إلى الصراع من أجل تحرير البشرية.</string>
+    <string name="vortex_film_shawshank_title">The Shawshank Redemption</string>
+    <string name="vortex_film_shawshank_description">يبني سجينان صداقة طويلة ويحافظان على الأمل خلف جدران سجن شاوشانك.</string>
+    <string name="vortex_backdrop_unknown_title">معلومات الخلفية</string>
+    <string name="vortex_backdrop_unknown_description">لم يتم توفير ملخص لهذه الصورة.</string>
+    <string name="vortex_watch_next_permission">السماح ببيانات المشاهدة</string>
+    <string name="vortex_watch_next_permission_hint">امنح إذن قوائم التلفزيون لقراءة المحتوى غير المكتمل الذي تشاركه التطبيقات.</string>
+    <string name="vortex_watch_next_refreshed">تم تحديث قائمة متابعة المشاهدة.</string>
+    <string name="vortex_watch_next_error">تعذر تحديث قائمة متابعة المشاهدة.</string>
+    <plurals name="vortex_resume_minutes_left">
+        <item quantity="zero">متبقي: %1$d دقيقة</item>
+        <item quantity="one">متبقي: %1$d دقيقة</item>
+        <item quantity="two">متبقي: %1$d دقيقة</item>
+        <item quantity="few">متبقي: %1$d دقيقة</item>
+        <item quantity="many">متبقي: %1$d دقيقة</item>
+        <item quantity="other">متبقي: %1$d دقيقة</item>
+    </plurals>
+</resources>

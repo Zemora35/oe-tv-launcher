@@ -26,7 +26,7 @@ internal fun qrModules(text: String): Array<BooleanArray> {
 @Composable
 private fun QrCode(text: String, modifier: Modifier) {
     val modules = remember(text) { qrModules(text) }
-    Canvas(modifier, contentDescription = "QR code to activate Trakt") {
+    Canvas(modifier, contentDescription = uiText("QR code to activate Trakt", LocalUiLanguage.current)) {
         drawRect(Color.White)
         val cell = floor(size.width / (modules.size + QR_QUIET_MODULES * 2))
         val inset = floor((size.width - cell * modules.size) / 2)
@@ -40,13 +40,13 @@ private fun QrCode(text: String, modifier: Modifier) {
 @Composable
 internal fun TraktActivation(auth: DeviceAuthorization?, status: String) {
     Column(Modifier.fillMaxWidth().padding(start = 24.dp, end = 56.dp, top = 16.dp, bottom = 12.dp)) {
-        if (auth == null) Text(status, style = NativeSettingsStyle.primaryStyle)
+        if (auth == null) Text(uiText(status, LocalUiLanguage.current), style = NativeSettingsStyle.primaryStyle)
         else {
-            Text("Scan with your phone to approve", style = NativeSettingsStyle.primaryStyle)
+            Text(uiText("Scan with your phone to approve", LocalUiLanguage.current), style = NativeSettingsStyle.primaryStyle)
             QrCode(auth.activationUrl, Modifier.padding(vertical = 12.dp).size(180.dp))
-            Text("Or open auth.trakt.tv/activate and enter", style = NativeSettingsStyle.summaryStyle)
+            Text(uiText("Or open auth.trakt.tv/activate and enter", LocalUiLanguage.current), style = NativeSettingsStyle.summaryStyle)
             Text(auth.userCode, Modifier.padding(top = 2.dp), style = NativeSettingsStyle.titleStyle)
-            Text(status, Modifier.padding(top = 8.dp), style = NativeSettingsStyle.summaryStyle)
+            Text(uiText(status, LocalUiLanguage.current), Modifier.padding(top = 8.dp), style = NativeSettingsStyle.summaryStyle)
         }
     }
 }

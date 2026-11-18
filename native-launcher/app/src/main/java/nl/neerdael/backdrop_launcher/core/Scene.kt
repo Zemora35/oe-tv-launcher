@@ -17,6 +17,8 @@ data class AppFocus(val row: Int, val tile: Int, val key: String)
 data class ResumeItem(
     val title: String, val description: String, val image: String?, val progress: Int,
     val intentUri: String?, val packageName: String?, val id: Long = 0, val contentId: String? = null,
+    val durationMillis: Long? = null, val playbackPositionMillis: Long? = null,
+    val sourceName: String? = null, val continuation: Boolean = true,
 )
 data class Scene(
     val name: String, val backdrop: String, val rows: List<AppRow>,

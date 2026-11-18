@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="vortex_featured_next">Sonraki öne çıkan program</string>
+    <string name="vortex_synopsis_unavailable">Bu programın Türkçe özeti paylaşılmamış. Ayrıntılar için programı açabilirsiniz.</string>
+    <string name="vortex_synopsis_frieren">İblis Kralı yendikten sonra uzun ömürlü elf büyücü Frieren, yol arkadaşlarıyla kurduğu bağları anlamak için yeni bir yolculuğa çıkar.</string>
+    <string name="vortex_content_google_tv_open">Google TV’yi aç</string>
+    <string name="vortex_content_google_tv_error">Google TV açılamadı.</string>
+    <string name="vortex_content_recommendation_description">%1$s tarafından önerildi. Programı ve izleme seçeneklerini görmek için açın.</string>
+    <string name="vortex_content_platform">Platform: %1$s</string>
+    <string name="vortex_content_platform_unknown">Platform doğrulanmadı</string>
+    <string name="vortex_content_watch_options">Nerede izlenir?</string>
+    <string name="vortex_content_artwork_note">Bu bir öne çıkan görselidir. İzleme seçenekleri tarayıcıda açılır; erişim ve abonelik koşulları platforma ve bölgeye bağlıdır.</string>
+    <string name="vortex_content_no_browser">İzleme seçeneklerini açmak için bir TV tarayıcısı yükleyin.</string>
+    <string name="vortex_content_youtube_open">YouTube’u aç</string>
+    <string name="vortex_content_youtube_hint">Paylaşılan yarım kalmış içerik yok. Bazı TV’lerde YouTube geçmişi bu satırla paylaşılmaz; YouTube içindeki Geçmiş bölümünü kontrol edin.</string>
+</resources>

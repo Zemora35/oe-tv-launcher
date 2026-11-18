@@ -34,7 +34,7 @@ import java.util.TimeZone
 import java.util.concurrent.atomic.AtomicLong
 
 @Composable
-internal fun StatusClock(style: HomeAppearance, active: Boolean) {
+internal fun StatusClock(style: HomeAppearance, active: Boolean, compact: Boolean = false) {
     if (!style.showDate && !style.showTime) return
     val context = LocalContext.current
     var now by remember { mutableLongStateOf(System.currentTimeMillis()) }
@@ -67,7 +67,8 @@ internal fun StatusClock(style: HomeAppearance, active: Boolean) {
     }
     val moment = Date(now)
     Text(listOfNotNull(if (style.showDate) date.format(moment) else null, if (style.showTime) time.format(moment) else null)
-        .joinToString("   "), fontSize = 22.sp)
+        .joinToString("   "), fontSize = if (compact) 18.sp else 22.sp,
+        maxLines = if (compact) 1 else Int.MAX_VALUE, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
 }
 
 private fun safeDateFormat(pattern: String, fallback: String, locale: Locale, zone: TimeZone) =
@@ -111,7 +112,7 @@ internal fun NetworkStatus(active: Boolean, open: () -> Unit) {
             if (registered) withContext(NonCancellable + Dispatchers.IO) { runCatching { manager.unregisterNetworkCallback(callback) } }
         }
     }
-    UiButton(open) { Text(state.text, Modifier.padding(8.dp), fontSize = 15.sp, color = if (state.connected) Color.White else Color(0xffff8a80)) }
+    UiButton(open) { Text(uiText(state.text, LocalUiLanguage.current), Modifier.padding(8.dp), fontSize = 15.sp, color = if (state.connected) Color.White else Color(0xffff8a80)) }
 }
 
 @Suppress("DEPRECATION")

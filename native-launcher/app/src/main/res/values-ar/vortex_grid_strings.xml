@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="vortex_quick_launch">التشغيل السريع</string>
+    <string name="vortex_quick_launch_edit">تعديل</string>
+    <string name="vortex_quick_launch_done">تم</string>
+    <string name="vortex_quick_launch_empty">اختر تعديل لإضافة تطبيقاتك المفضلة.</string>
+    <string name="vortex_quick_launch_choose">موافق: اختيار/إزالة · %1$d/%2$d محددة · ترتيب الاختيار هو ترتيب الصف · تم أو رجوع للحفظ</string>
+    <string name="vortex_quick_launch_selected">محدد كمفضل</string>
+    <string name="vortex_quick_launch_unselected">غير محدد</string>
+    <string name="vortex_quick_launch_add">إضافة إلى التشغيل السريع</string>
+    <string name="vortex_quick_launch_remove">إزالة من التشغيل السريع</string>
+    <string name="vortex_quick_launch_limit">اختر حتى %1$d تطبيقات. أزل تطبيقًا قبل إضافة آخر.</string>
+    <string name="vortex_quick_launch_save_error">تعذر حفظ المفضلة. حاول مجددًا.</string>
+    <string name="vortex_grid_all_subtitle">تصفح التطبيقات المثبتة على O.E tv وافتحها.</string>
+    <string name="vortex_grid_history_subtitle">التطبيقات المفتوحة من O.E tv ووقت آخر زيارة لها.</string>
+    <string name="vortex_grid_search">البحث عن تطبيق</string>
+    <string name="vortex_grid_history_search">البحث في سجل التطبيقات</string>
+    <string name="vortex_grid_filter">التصفية: %1$s</string>
+    <string name="vortex_grid_sort">الترتيب: %1$s</string>
+    <string name="vortex_grid_type_all">الكل</string>
+    <string name="vortex_grid_type_tv">تطبيقات التلفزيون</string>
+    <string name="vortex_grid_type_android">تطبيقات أخرى</string>
+    <string name="vortex_grid_category_all">الكل</string>
+    <string name="vortex_grid_category_streaming">البث</string>
+    <string name="vortex_grid_category_media">الوسائط</string>
+    <string name="vortex_grid_category_tools">الأدوات</string>
+    <string name="vortex_grid_category_system">النظام</string>
+    <string name="vortex_grid_sort_az">A–Z</string>
+    <string name="vortex_grid_sort_za">Z–A</string>
+    <string name="vortex_grid_sort_recent">آخر زيارة</string>
+    <string name="vortex_grid_no_results">لا توجد تطبيقات تطابق البحث أو عوامل التصفية.</string>
+    <string name="vortex_grid_history_empty">ستظهر هنا التطبيقات التي تفتحها من O.E tv.</string>
+    <string name="vortex_grid_time_unknown">الوقت غير مسجل</string>
+    <string name="vortex_grid_last_visit">آخر زيارة: %1$s</string>
+    <string name="vortex_grid_close">رجوع</string>
+    <string name="vortex_grid_position">%1$d / %2$d</string>
+    <string name="vortex_grid_clear_search">مسح البحث</string>
+    <string name="vortex_grid_choose_filter">تصفية التطبيقات</string>
+    <string name="vortex_grid_choose_sort">ترتيب التطبيقات</string>
+    <string name="vortex_grid_open_app">فتح %1$s</string>
+    <string name="vortex_grid_app_actions">خيارات التطبيق</string>
+</resources>

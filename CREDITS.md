@@ -1,5 +1,9 @@
 # Credits and notices
 
+**O.E tv** is the personal cinematic-launcher edition by Oğuzhan Eklidağ,
+built on Backdrop Launcher. Its header signature was generated from the
+user-supplied handwriting style; see [branding notes](docs/development/oe-tv-branding.md).
+
 **Backdrop Launcher** is maintained by John Neerdael. The product identity is integrated from the supplied Backdrop Launcher Brand Kit 1.0.
 
 ## Upstream software

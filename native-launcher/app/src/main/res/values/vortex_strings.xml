@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="vortex_nav_home">Home</string>
+    <string name="vortex_nav_discover">Discover</string>
+    <string name="vortex_nav_my_list">My List</string>
+    <string name="vortex_nav_search">Search</string>
+    <string name="vortex_settings">Settings</string>
+    <string name="vortex_featured">Featured</string>
+    <string name="vortex_watch_now">Watch Now</string>
+    <string name="vortex_browse_apps">Browse Apps</string>
+    <string name="vortex_more_info">More Info</string>
+    <string name="vortex_continue_watching">Continue Watching</string>
+    <string name="vortex_resume_description">Continue where you left off.</string>
+    <string name="vortex_watched_progress">%1$d%% watched</string>
+    <string name="vortex_watching_empty_title">Refresh Continue Watching</string>
+    <string name="vortex_watching_empty_message">No shared unfinished programmes yet. Only playback progress published by compatible apps appears here.</string>
+    <string name="vortex_quick_shortcuts">Quick Shortcuts</string>
+    <string name="vortex_history">History</string>
+    <string name="vortex_downloads">Downloads</string>
+    <string name="vortex_all_apps">All Apps</string>
+    <string name="vortex_info">Information</string>
+    <string name="vortex_close">Close</string>
+    <string name="vortex_remove_from_list">Remove from My List</string>
+    <string name="vortex_add_to_list">Add to My List</string>
+    <string name="vortex_info_artwork_only">Backdrop artwork only. Open an app to choose something to watch.</string>
+    <string name="vortex_search_hint">Search your apps and shared programmes…</string>
+    <string name="vortex_list_empty">Save a programme from More Info. Only programmes currently shared by your apps appear here.</string>
+    <string name="vortex_history_empty">Apps you open from Vortex will appear here.</string>
+    <string name="vortex_discover_empty">Your apps have not shared programmes yet. Add TV channels in Settings → Applications.</string>
+    <string name="vortex_search_empty">No matching apps or programmes.</string>
+    <string name="vortex_save_programme_hint">Hold OK on a programme to save or remove it.</string>
+    <string name="vortex_home_title">Your evening, reimagined.</string>
+    <string name="vortex_home_description">Your apps. Your stories. One place to come home to.</string>
+    <string name="vortex_applications">Applications</string>
+    <string name="vortex_tv_apps">TV Apps</string>
+    <string name="vortex_android_apps">Android Apps</string>
+    <string name="vortex_entertainment">Entertainment</string>
+    <string name="vortex_error_move_app">Unable to move app. Please try again.</string>
+    <string name="vortex_error_no_downloads">This TV has no Downloads app.</string>
+    <string name="vortex_error_downloads_unavailable">Downloads is unavailable on this TV.</string>
+    <string name="vortex_dock_previous">Previous app</string>
+    <string name="vortex_dock_next">Next app</string>
+    <string name="vortex_dock_reordering">Reordering</string>
+    <string name="vortex_dock_navigation">Press left or right to select an app</string>
+    <string name="vortex_dock_state">%1$d of %2$d. %3$s</string>
+    <string name="vortex_dock_hint">◀  %1$d / %2$d  ▶    Hold OK for actions</string>
+    <string name="vortex_dock_reorder_hint">Reorder · ◀ ▶ to move · OK to finish</string>
+    <string name="vortex_movies">Movies</string>
+    <string name="vortex_live_tv">Live TV</string>
+    <string name="vortex_games">Games</string>
+    <string name="vortex_browser">Browser</string>
+    <string name="vortex_mirroring">Screen Mirroring</string>
+    <string name="vortex_photos">Photos</string>
+    <string name="vortex_music">Music</string>
+    <string name="vortex_sample_title">INTERSTELLAR</string>
+    <string name="vortex_sample_description">A journey beyond the familiar. Discover what lies on the other side of the stars.</string>
+    <string name="vortex_sample_badge">SAMPLE</string>
+    <string name="vortex_sample_genre">Science fiction</string>
+    <string name="vortex_sample_duration">2h 49m</string>
+    <string name="vortex_sample_inception">Inception</string>
+    <string name="vortex_sample_resume_first">Sample · 48 min remaining</string>
+    <string name="vortex_sample_resume_second">Sample · 1h 12m remaining</string>
+    <string name="vortex_sample_resume_third">Sample · Chapter 8</string>
+    <string name="vortex_clock_name">O.E tv Clock</string>
+    <string name="vortex_loading">Loading O.E tv…</string>
+    <string name="vortex_legacy_settings" tools:ignore="MissingTranslation">Settings</string>
+    <string name="vortex_legacy_general_settings" tools:ignore="MissingTranslation">General settings</string>
+    <string name="vortex_legacy_applications" tools:ignore="MissingTranslation">Applications</string>
+    <string name="vortex_legacy_interface" tools:ignore="MissingTranslation">Interface</string>
+    <string name="vortex_legacy_system" tools:ignore="MissingTranslation">System</string>
+    <string name="vortex_legacy_system_settings" tools:ignore="MissingTranslation">System settings</string>
+    <string name="vortex_legacy_appearance" tools:ignore="MissingTranslation">Appearance</string>
+    <string name="vortex_legacy_accent_color" tools:ignore="MissingTranslation">Accent color</string>
+    <string name="vortex_legacy_status_bar" tools:ignore="MissingTranslation">Status bar</string>
+    <string name="vortex_legacy_miscellaneous" tools:ignore="MissingTranslation">Miscellaneous</string>
+    <string name="vortex_legacy_updates" tools:ignore="MissingTranslation">Updates</string>
+    <string name="vortex_legacy_open" tools:ignore="MissingTranslation">Open</string>
+    <string name="vortex_legacy_cancel" tools:ignore="MissingTranslation">Cancel</string>
+    <string name="vortex_legacy_confirm" tools:ignore="MissingTranslation">Confirm</string>
+    <string name="vortex_legacy_save" tools:ignore="MissingTranslation">Save</string>
+    <string name="vortex_legacy_delete" tools:ignore="MissingTranslation">Delete</string>
+    <string name="vortex_legacy_remove" tools:ignore="MissingTranslation">Remove</string>
+    <string name="vortex_legacy_cinematic_vortex_home" tools:ignore="MissingTranslation">Cinematic vortex home</string>
+    <string name="vortex_legacy_reduce_cinematic_motion" tools:ignore="MissingTranslation">Reduce cinematic motion</string>
+    <string name="vortex_legacy_add_row" tools:ignore="MissingTranslation">Add row</string>
+    <string name="vortex_legacy_row_name" tools:ignore="MissingTranslation">Row name</string>
+    <string name="vortex_legacy_app_order" tools:ignore="MissingTranslation">App order</string>
+    <string name="vortex_legacy_manual" tools:ignore="MissingTranslation">Manual</string>
+    <string name="vortex_legacy_alphabetical" tools:ignore="MissingTranslation">Alphabetical</string>
+    <string name="vortex_legacy_last_used" tools:ignore="MissingTranslation">Last used</string>
+    <string name="vortex_legacy_show_on_home_screen" tools:ignore="MissingTranslation">Show on home screen</string>
+    <string name="vortex_legacy_hide_from_home_screen" tools:ignore="MissingTranslation">Hide from home screen</string>
+    <string name="vortex_legacy_move_row_up" tools:ignore="MissingTranslation">Move row up</string>
+    <string name="vortex_legacy_move_row_down" tools:ignore="MissingTranslation">Move row down</string>
+    <string name="vortex_legacy_delete_row" tools:ignore="MissingTranslation">Delete row</string>
+    <string name="vortex_legacy_remove_channel" tools:ignore="MissingTranslation">Remove channel</string>
+    <string name="vortex_legacy_installed_apps" tools:ignore="MissingTranslation">Installed apps</string>
+    <string name="vortex_legacy_no_installed_apps" tools:ignore="MissingTranslation">No installed apps.</string>
+    <string name="vortex_legacy_app_no_longer_installed" tools:ignore="MissingTranslation">App no longer installed</string>
+    <string name="vortex_legacy_row_no_longer_exists" tools:ignore="MissingTranslation">Row no longer exists</string>
+    <string name="vortex_legacy_add_to_remove_from_rows" tools:ignore="MissingTranslation">Add to / remove from rows</string>
+    <string name="vortex_legacy_app_info" tools:ignore="MissingTranslation">App info</string>
+    <string name="vortex_legacy_uninstall" tools:ignore="MissingTranslation">Uninstall</string>
+    <string name="vortex_legacy_android_app" tools:ignore="MissingTranslation">Android app</string>
+    <string name="vortex_legacy_tv_app" tools:ignore="MissingTranslation">TV app</string>
+    <string name="vortex_legacy_tv_channel" tools:ignore="MissingTranslation">TV channel</string>
+    <string name="vortex_legacy_hidden" tools:ignore="MissingTranslation">Hidden</string>
+    <string name="vortex_legacy_shown" tools:ignore="MissingTranslation">Shown</string>
+    <string name="vortex_legacy_hidden_on_home_screen" tools:ignore="MissingTranslation">Hidden on home screen</string>
+    <string name="vortex_legacy_show_hide_and_manage_tv_and_android_applications" tools:ignore="MissingTranslation">Show, hide and manage TV and Android applications</string>
+    <string name="vortex_legacy_show_channels_from_your_apps_as_rows" tools:ignore="MissingTranslation">Show channels from your apps as rows</string>
+    <string name="vortex_legacy_tv_channels" tools:ignore="MissingTranslation">TV channels</string>
+    <string name="vortex_legacy_allows_reading_the_channels_your_apps_publish" tools:ignore="MissingTranslation">Allows reading the channels your apps publish</string>
+    <string name="vortex_legacy_not_publishing_right_now" tools:ignore="MissingTranslation">Not publishing right now</string>
+    <string name="vortex_legacy_loading_channels" tools:ignore="MissingTranslation">Loading channels…</string>
+    <string name="vortex_legacy_no_app_on_this_tv_publishes_channels_right_now" tools:ignore="MissingTranslation">No app on this TV publishes channels right now.</string>
+    <string name="vortex_legacy_selected_channels_become_rows_on_home_move_them_in_applications" tools:ignore="MissingTranslation">Selected channels become rows on Home. Move them in Applications.</string>
+    <string name="vortex_legacy_applications_stay_installed_only_this_row_and_its_membership_are_removed" tools:ignore="MissingTranslation">Applications stay installed. Only this row and its membership are removed.</string>
+    <string name="vortex_legacy_the_app_keeps_publishing_this_channel_you_can_add_it_back_under_tv_channels" tools:ignore="MissingTranslation">The app keeps publishing this channel. You can add it back under TV channels.</string>
+    <string name="vortex_legacy_up_down_to_move_select_to_finish" tools:ignore="MissingTranslation">Up/Down to move · Select to finish</string>
+    <string name="vortex_legacy_left_right_to_move_select_to_finish" tools:ignore="MissingTranslation">Left/Right to move · Select to finish</string>
+    <string name="vortex_legacy_select_to_move_hold_right_to_edit" tools:ignore="MissingTranslation">Select to move · Hold/Right to edit</string>
+    <string name="vortex_legacy_choose_packaged_icon_banner" tools:ignore="MissingTranslation">Choose packaged icon / banner</string>
+    <string name="vortex_legacy_choose_app_icon_banner" tools:ignore="MissingTranslation">Choose app icon / banner</string>
+    <string name="vortex_legacy_restore_application_artwork" tools:ignore="MissingTranslation">Restore application artwork</string>
+    <string name="vortex_legacy_loading_included_artwork" tools:ignore="MissingTranslation">Loading included artwork…</string>
+    <string name="vortex_legacy_app_icon_background_opacity" tools:ignore="MissingTranslation">App icon background opacity</string>
+    <string name="vortex_legacy_app_row_layout" tools:ignore="MissingTranslation">App row layout</string>
+    <string name="vortex_legacy_focused_row_height" tools:ignore="MissingTranslation">Focused row height</string>
+    <string name="vortex_legacy_row_position" tools:ignore="MissingTranslation">Row position</string>
+    <string name="vortex_legacy_app_size" tools:ignore="MissingTranslation">App size</string>
+    <string name="vortex_legacy_space_between_apps" tools:ignore="MissingTranslation">Space between apps</string>
+    <string name="vortex_legacy_space_between_rows" tools:ignore="MissingTranslation">Space between rows</string>
+    <string name="vortex_legacy_row_below_opacity" tools:ignore="MissingTranslation">Row below opacity</string>
+    <string name="vortex_legacy_reset_app_row_layout" tools:ignore="MissingTranslation">Reset app row layout</string>
+    <string name="vortex_legacy_how_far_up_the_screen_the_active_row_sits" tools:ignore="MissingTranslation">How far up the screen the active row sits</string>
+    <string name="vortex_legacy_distance_from_the_left_edge_of_the_screen" tools:ignore="MissingTranslation">Distance from the left edge of the screen</string>
+    <string name="vortex_legacy_size_of_the_apps_in_every_row" tools:ignore="MissingTranslation">Size of the apps in every row</string>
+    <string name="vortex_legacy_distance_between_apps_in_a_row" tools:ignore="MissingTranslation">Distance between apps in a row</string>
+    <string name="vortex_legacy_distance_from_one_row_of_apps_to_the_next" tools:ignore="MissingTranslation">Distance from one row of apps to the next</string>
+    <string name="vortex_legacy_visibility_of_the_rows_under_the_active_row" tools:ignore="MissingTranslation">Visibility of the rows under the active row</string>
+    <string name="vortex_legacy_left_and_right_change_the_selected_setting_home_updates_as_you_go" tools:ignore="MissingTranslation">Left and Right change the selected setting. Home updates as you go.</string>
+    <string name="vortex_legacy_left_and_right_change_the_selected_setting_home_updates_as_you_go_big_picture_mode_keeps_its_own_layout" tools:ignore="MissingTranslation">Left and Right change the selected setting. Home updates as you go. Big picture mode keeps its own layout.</string>
+    <string name="vortex_legacy_stops_just_below_continue_watching" tools:ignore="MissingTranslation">Stops just below Continue Watching</string>
+    <string name="vortex_legacy_stops_at_the_top_of_the_screen" tools:ignore="MissingTranslation">Stops at the top of the screen</string>
+    <string name="vortex_legacy_stops_just_above_the_app_row" tools:ignore="MissingTranslation">Stops just above the app row</string>
+    <string name="vortex_legacy_card_size" tools:ignore="MissingTranslation">Card size</string>
+    <string name="vortex_legacy_second_card_size" tools:ignore="MissingTranslation">Second card size</string>
+    <string name="vortex_legacy_second_card_opacity" tools:ignore="MissingTranslation">Second card opacity</string>
+    <string name="vortex_legacy_space_between_cards" tools:ignore="MissingTranslation">Space between cards</string>
+    <string name="vortex_legacy_how_far_up_the_screen_the_cards_end" tools:ignore="MissingTranslation">How far up the screen the cards end</string>
+    <string name="vortex_legacy_size_of_the_selected_card" tools:ignore="MissingTranslation">Size of the selected card</string>
+    <string name="vortex_legacy_compared_with_the_selected_card" tools:ignore="MissingTranslation">Compared with the selected card</string>
+    <string name="vortex_legacy_visibility_of_the_card_next_in_line" tools:ignore="MissingTranslation">Visibility of the card next in line</string>
+    <string name="vortex_legacy_distance_between_the_two_cards" tools:ignore="MissingTranslation">Distance between the two cards</string>
+    <string name="vortex_legacy_continue_watching" tools:ignore="MissingTranslation">Continue Watching</string>
+    <string name="vortex_legacy_continue_watching_layout" tools:ignore="MissingTranslation">Continue Watching layout</string>
+    <string name="vortex_legacy_show_continue_watching" tools:ignore="MissingTranslation">Show Continue Watching</string>
+    <string name="vortex_legacy_maximum_continue_watching_items" tools:ignore="MissingTranslation">Maximum Continue Watching items</string>
+    <string name="vortex_legacy_maximum_items" tools:ignore="MissingTranslation">Maximum items</string>
+    <string name="vortex_legacy_unlimited" tools:ignore="MissingTranslation">Unlimited</string>
+    <string name="vortex_legacy_big_picture_hero_mode" tools:ignore="MissingTranslation">Big picture / hero mode</string>
+    <string name="vortex_legacy_hide_items_without_images" tools:ignore="MissingTranslation">Hide items without images</string>
+    <string name="vortex_legacy_grant_tv_listings_permission" tools:ignore="MissingTranslation">Grant TV listings permission</string>
+    <string name="vortex_legacy_allows_access_to_the_tv_s_public_continue_watching_provider" tools:ignore="MissingTranslation">Allows access to the TV\'s public Continue Watching provider</string>
+    <string name="vortex_legacy_refresh_continue_watching" tools:ignore="MissingTranslation">Refresh Continue Watching</string>
+    <string name="vortex_legacy_continue_watching_refreshed" tools:ignore="MissingTranslation">Continue Watching refreshed</string>
+    <string name="vortex_legacy_include_this_app_in_continue_watching" tools:ignore="MissingTranslation">Include this app in Continue Watching</string>
+    <string name="vortex_legacy_reset_continue_watching_layout" tools:ignore="MissingTranslation">Reset Continue Watching layout</string>
+    <string name="vortex_legacy_backdrops" tools:ignore="MissingTranslation">Backdrops</string>
+    <string name="vortex_legacy_next_backdrop" tools:ignore="MissingTranslation">Next backdrop</string>
+    <string name="vortex_legacy_choose_included_backdrop" tools:ignore="MissingTranslation">Choose included backdrop</string>
+    <string name="vortex_legacy_included_backdrops" tools:ignore="MissingTranslation">Included backdrops</string>
+    <string name="vortex_legacy_10_included_cinematic_backdrops" tools:ignore="MissingTranslation">10 included cinematic backdrops</string>
+    <string name="vortex_legacy_change_backdrop_every" tools:ignore="MissingTranslation">Change backdrop every</string>
+    <string name="vortex_legacy_refresh_backdrop_on_return" tools:ignore="MissingTranslation">Refresh backdrop on return</string>
+    <string name="vortex_legacy_connect_trakt" tools:ignore="MissingTranslation">Connect Trakt</string>
+    <string name="vortex_legacy_trakt_connected" tools:ignore="MissingTranslation">Trakt connected</string>
+    <string name="vortex_legacy_disconnect_trakt" tools:ignore="MissingTranslation">Disconnect Trakt</string>
+    <string name="vortex_legacy_use_trakt_backdrops" tools:ignore="MissingTranslation">Use Trakt backdrops</string>
+    <string name="vortex_legacy_choose_movie_and_tv_backdrops_from_trakt" tools:ignore="MissingTranslation">Choose movie and TV backdrops from Trakt</string>
+    <string name="vortex_legacy_trakt_is_not_configured_in_this_build" tools:ignore="MissingTranslation">Trakt is not configured in this build</string>
+    <string name="vortex_legacy_catalogs_popular_lists" tools:ignore="MissingTranslation">Catalogs &amp; popular lists</string>
+    <string name="vortex_legacy_trakt_catalogs_lists" tools:ignore="MissingTranslation">Trakt catalogs &amp; lists</string>
+    <string name="vortex_legacy_fetch_popular_trakt_lists" tools:ignore="MissingTranslation">Fetch popular Trakt lists</string>
+    <string name="vortex_legacy_select_at_least_one_catalog_or_list_to_use_trakt_backdrops" tools:ignore="MissingTranslation">Select at least one catalog or list to use Trakt backdrops.</string>
+    <string name="vortex_legacy_backdrops_provided_by_tmdb_this_product_uses_the_tmdb_api_but_is_not_endorsed_or_certified_by_tmdb" tools:ignore="MissingTranslation">Backdrops provided by TMDB. This product uses the TMDB API but is not endorsed or certified by TMDB.</string>
+    <string name="vortex_legacy_cancel_device_login" tools:ignore="MissingTranslation">Cancel device login</string>
+    <string name="vortex_legacy_back_to_backdrops" tools:ignore="MissingTranslation">Back to backdrops</string>
+    <string name="vortex_legacy_try_again" tools:ignore="MissingTranslation">Try again</string>
+    <string name="vortex_legacy_activation_code_expired_connect_again" tools:ignore="MissingTranslation">Activation code expired. Connect again.</string>
+    <string name="vortex_legacy_scan_with_your_phone_to_approve" tools:ignore="MissingTranslation">Scan with your phone to approve</string>
+    <string name="vortex_legacy_or_open_auth_trakt_tv_activate_and_enter" tools:ignore="MissingTranslation">Or open auth.trakt.tv/activate and enter</string>
+    <string name="vortex_legacy_qr_code_to_activate_trakt" tools:ignore="MissingTranslation">QR code to activate Trakt</string>
+    <string name="vortex_legacy_date_and_time_formats" tools:ignore="MissingTranslation">Date and time formats</string>
+    <string name="vortex_legacy_show_date" tools:ignore="MissingTranslation">Show date</string>
+    <string name="vortex_legacy_show_time" tools:ignore="MissingTranslation">Show time</string>
+    <string name="vortex_legacy_show_network_indicator" tools:ignore="MissingTranslation">Show network indicator</string>
+    <string name="vortex_legacy_auto_hide_status_bar" tools:ignore="MissingTranslation">Auto-hide status bar</string>
+    <string name="vortex_legacy_custom_date_format" tools:ignore="MissingTranslation">Custom date format</string>
+    <string name="vortex_legacy_custom_time_format" tools:ignore="MissingTranslation">Custom time format</string>
+    <string name="vortex_legacy_format_pattern" tools:ignore="MissingTranslation">Format pattern</string>
+    <string name="vortex_legacy_network" tools:ignore="MissingTranslation">Network</string>
+    <string name="vortex_legacy_network_settings" tools:ignore="MissingTranslation">Network settings</string>
+    <string name="vortex_legacy_network_unavailable" tools:ignore="MissingTranslation">Network unavailable</string>
+    <string name="vortex_legacy_no_connection" tools:ignore="MissingTranslation">No connection</string>
+    <string name="vortex_legacy_ethernet" tools:ignore="MissingTranslation">Ethernet</string>
+    <string name="vortex_legacy_mobile" tools:ignore="MissingTranslation">Mobile</string>
+    <string name="vortex_legacy_connected" tools:ignore="MissingTranslation">Connected</string>
+    <string name="vortex_legacy_preview_clock" tools:ignore="MissingTranslation">Preview clock</string>
+    <string name="vortex_legacy_screensaver_clock_style" tools:ignore="MissingTranslation">Screensaver clock style</string>
+    <string name="vortex_legacy_android_screensaver_settings" tools:ignore="MissingTranslation">Android screensaver settings</string>
+    <string name="vortex_legacy_start_screensaver" tools:ignore="MissingTranslation">Start screensaver</string>
+    <string name="vortex_legacy_show_app_names_below_icons" tools:ignore="MissingTranslation">Show app names below icons</string>
+    <string name="vortex_legacy_app_key_click_sound" tools:ignore="MissingTranslation">App key click sound</string>
+    <string name="vortex_legacy_animated_focus_border" tools:ignore="MissingTranslation">Animated focus border</string>
+    <string name="vortex_legacy_show_focus_borders" tools:ignore="MissingTranslation">Show focus borders</string>
+    <string name="vortex_legacy_focus_border_thickness" tools:ignore="MissingTranslation">Focus border thickness</string>
+    <string name="vortex_legacy_custom_hex_color" tools:ignore="MissingTranslation">Custom hex color</string>
+    <string name="vortex_legacy_six_hexadecimal_digits_for_example_a78bfa" tools:ignore="MissingTranslation">Six hexadecimal digits, for example A78BFA</string>
+    <string name="vortex_legacy_enter_exactly_six_hexadecimal_digits" tools:ignore="MissingTranslation">Enter exactly six hexadecimal digits</string>
+    <string name="vortex_legacy_white" tools:ignore="MissingTranslation">White</string>
+    <string name="vortex_legacy_black" tools:ignore="MissingTranslation">Black</string>
+    <string name="vortex_legacy_grey" tools:ignore="MissingTranslation">Grey</string>
+    <string name="vortex_legacy_blue" tools:ignore="MissingTranslation">Blue</string>
+    <string name="vortex_legacy_purple" tools:ignore="MissingTranslation">Purple</string>
+    <string name="vortex_legacy_cyan" tools:ignore="MissingTranslation">Cyan</string>
+    <string name="vortex_legacy_green" tools:ignore="MissingTranslation">Green</string>
+    <string name="vortex_legacy_orange" tools:ignore="MissingTranslation">Orange</string>
+    <string name="vortex_legacy_pink" tools:ignore="MissingTranslation">Pink</string>
+    <string name="vortex_legacy_yellow" tools:ignore="MissingTranslation">Yellow</string>
+    <string name="vortex_legacy_amber" tools:ignore="MissingTranslation">Amber</string>
+    <string name="vortex_legacy_ice_blue" tools:ignore="MissingTranslation">Ice blue</string>
+    <string name="vortex_legacy_indigo" tools:ignore="MissingTranslation">Indigo</string>
+    <string name="vortex_legacy_teal" tools:ignore="MissingTranslation">Teal</string>
+    <string name="vortex_legacy_rose" tools:ignore="MissingTranslation">Rose</string>
+    <string name="vortex_legacy_lime" tools:ignore="MissingTranslation">Lime</string>
+    <string name="vortex_legacy_minimal" tools:ignore="MissingTranslation">Minimal</string>
+    <string name="vortex_legacy_elegant" tools:ignore="MissingTranslation">Elegant</string>
+    <string name="vortex_legacy_digital" tools:ignore="MissingTranslation">Digital</string>
+    <string name="vortex_legacy_bold" tools:ignore="MissingTranslation">Bold</string>
+    <string name="vortex_legacy_pixel" tools:ignore="MissingTranslation">Pixel</string>
+    <string name="vortex_legacy_check_for_updates" tools:ignore="MissingTranslation">Check for updates</string>
+    <string name="vortex_legacy_check_again" tools:ignore="MissingTranslation">Check again</string>
+    <string name="vortex_legacy_install_updates_automatically" tools:ignore="MissingTranslation">Install updates automatically</string>
+    <string name="vortex_legacy_downloaded_and_ready_to_install" tools:ignore="MissingTranslation">Downloaded and ready to install</string>
+    <string name="vortex_legacy_no_newer_published_release_is_available" tools:ignore="MissingTranslation">No newer published release is available.</string>
+    <string name="vortex_legacy_read_the_release_notes_below_before_downloading" tools:ignore="MissingTranslation">Read the release notes below before downloading</string>
+    <string name="vortex_legacy_about_backdrop_launcher" tools:ignore="MissingTranslation">About Backdrop Launcher</string>
+    <string name="vortex_legacy_loading_backdrop" tools:ignore="MissingTranslation">Loading Backdrop…</string>
+    <string name="vortex_legacy_saving" tools:ignore="MissingTranslation">Saving…</string>
+    <string name="vortex_legacy_saving_applications" tools:ignore="MissingTranslation">Saving applications…</string>
+    <string name="vortex_legacy_creating_row" tools:ignore="MissingTranslation">Creating row…</string>
+    <string name="vortex_legacy_deleting_row" tools:ignore="MissingTranslation">Deleting row…</string>
+    <string name="vortex_legacy_removing_channel" tools:ignore="MissingTranslation">Removing channel…</string>
+    <string name="vortex_legacy_saving_artwork" tools:ignore="MissingTranslation">Saving artwork…</string>
+    <string name="vortex_legacy_setting_backdrop" tools:ignore="MissingTranslation">Setting backdrop…</string>
+    <string name="vortex_legacy_loading_backdrop_192" tools:ignore="MissingTranslation">Loading backdrop…</string>
+    <string name="vortex_legacy_refreshing_continue_watching" tools:ignore="MissingTranslation">Refreshing Continue Watching…</string>
+    <string name="vortex_legacy_requesting_trakt_code" tools:ignore="MissingTranslation">Requesting Trakt code…</string>
+    <string name="vortex_legacy_waiting_for_approval" tools:ignore="MissingTranslation">Waiting for approval…</string>
+    <string name="vortex_legacy_cancelling_login" tools:ignore="MissingTranslation">Cancelling login…</string>
+    <string name="vortex_legacy_fetching_popular_lists" tools:ignore="MissingTranslation">Fetching popular lists…</string>
+    <string name="vortex_legacy_saving_catalogs" tools:ignore="MissingTranslation">Saving catalogs…</string>
+    <string name="vortex_legacy_checking_for_updates" tools:ignore="MissingTranslation">Checking for updates…</string>
+    <string name="vortex_legacy_downloading_and_verifying_update" tools:ignore="MissingTranslation">Downloading and verifying update…</string>
+    <string name="vortex_legacy_unable_to_complete_this_action_try_again" tools:ignore="MissingTranslation">Unable to complete this action. Try again.</string>
+    <string name="vortex_legacy_unable_to_load_these_settings" tools:ignore="MissingTranslation">Unable to load these settings</string>
+    <string name="vortex_legacy_unable_to_contact_trakt" tools:ignore="MissingTranslation">Unable to contact Trakt</string>
+    <string name="vortex_legacy_application_is_unavailable" tools:ignore="MissingTranslation">Application is unavailable</string>
+    <string name="vortex_legacy_application_could_not_be_opened" tools:ignore="MissingTranslation">Application could not be opened</string>
+    <string name="vortex_legacy_playback_target_is_unavailable" tools:ignore="MissingTranslation">Playback target is unavailable</string>
+    <string name="vortex_legacy_update_saved_install_it_from_settings" tools:ignore="MissingTranslation">Update saved. Install it from Settings.</string>
+    <string name="vortex_legacy_launcher_data_could_not_be_opened_your_existing_data_was_preserved" tools:ignore="MissingTranslation">Launcher data could not be opened. Your existing data was preserved.</string>
+    <string name="vortex_legacy_watch_next_permission_is_available_in_settings" tools:ignore="MissingTranslation">Watch Next permission is available in Settings</string>
+    <string name="vortex_legacy_reorder_in_1_s" tools:ignore="MissingTranslation">Reorder in %1$s</string>
+    <string name="vortex_legacy_remove_from_1_s" tools:ignore="MissingTranslation">Remove from %1$s</string>
+    <string name="vortex_legacy_rows_for_1_s" tools:ignore="MissingTranslation">Rows for %1$s</string>
+    <string name="vortex_legacy_delete_1_s" tools:ignore="MissingTranslation">Delete %1$s?</string>
+    <string name="vortex_legacy_remove_1_s" tools:ignore="MissingTranslation">Remove %1$s?</string>
+    <string name="vortex_legacy_1_d_minutes" tools:ignore="MissingTranslation">%1$d minutes</string>
+    <string name="vortex_legacy_1_d_min" tools:ignore="MissingTranslation">%1$d min</string>
+    <string name="vortex_legacy_1_d_items" tools:ignore="MissingTranslation">%1$d items</string>
+    <string name="vortex_legacy_1_d_apps" tools:ignore="MissingTranslation">%1$d apps</string>
+    <string name="vortex_legacy_install_update_1_s" tools:ignore="MissingTranslation">Install update %1$s</string>
+    <string name="vortex_legacy_download_1_s" tools:ignore="MissingTranslation">Download %1$s</string>
+    <string name="vortex_legacy_latest_release_1_s" tools:ignore="MissingTranslation">Latest release: %1$s</string>
+    <string name="vortex_legacy_tv_apps" tools:ignore="MissingTranslation">TV Apps</string>
+    <string name="vortex_legacy_android_apps" tools:ignore="MissingTranslation">Android Apps</string>
+    <string name="vortex_legacy_entertainment" tools:ignore="MissingTranslation">Entertainment</string>
+    <string name="vortex_legacy_denied" tools:ignore="MissingTranslation">denied</string>
+    <string name="vortex_legacy_expired" tools:ignore="MissingTranslation">expired</string>
+    <string name="vortex_legacy_cancelled" tools:ignore="MissingTranslation">cancelled</string>
+    <string name="vortex_legacy_invalid" tools:ignore="MissingTranslation">invalid</string>
+    <string name="vortex_legacy_already_used" tools:ignore="MissingTranslation">already used</string>
+    <plurals name="vortex_app_count">
+        <item quantity="one">%1$d app</item>
+        <item quantity="other">%1$d apps</item>
+    </plurals>
+</resources>

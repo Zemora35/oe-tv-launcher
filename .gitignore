@@ -1,4 +1,10 @@
 # Miscellaneous
+.tv-test/
+/.publish/
+/deliverables/
+.env
+.env.*
+!.env.example
 *.class
 *.log
 *.pyc

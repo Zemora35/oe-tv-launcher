@@ -7,6 +7,7 @@ import nl.neerdael.backdrop_launcher.core.DeviceAuthorization
 import nl.neerdael.backdrop_launcher.core.MediaAccess
 import nl.neerdael.backdrop_launcher.core.PreferenceAccess
 import nl.neerdael.backdrop_launcher.core.ResumeItem
+import nl.neerdael.backdrop_launcher.core.launcherLocale
 import org.json.JSONObject
 import java.io.File
 import java.util.concurrent.atomic.AtomicLong
@@ -16,11 +17,14 @@ class NativeMedia internal constructor(private val prefs: PreferenceAccess, priv
     private val disk: MediaDisk, private val feed: WatchNextFeed, private val channels: TvChannelFeed,
     private val transport: MediaTransport = UrlMediaTransport,
     private val now: () -> Long = System::currentTimeMillis,
-    private val imageValidator: (ByteArray) -> Boolean = ::validMediaImage) : MediaAccess {
+    private val imageValidator: (ByteArray) -> Boolean = ::validMediaImage,
+    private val language: () -> String = { "en" }, private val featured: FeaturedFeed? = null) : MediaAccess {
     constructor(context: Context, prefs: PreferenceAccess, clientId: String, tmdbApiKey: String, redirectUri: String) : this(
         prefs, TraktClient(prefs, clientId, tmdbApiKey, redirectUri), MediaDisk(context.cacheDir),
         WatchNextFeed(prefs, AndroidWatchNextProvider(context.applicationContext), MediaDisk(context.cacheDir)),
-        TvChannelFeed(AndroidTvChannelProvider(context.applicationContext), MediaDisk(context.cacheDir)))
+        TvChannelFeed(AndroidTvChannelProvider(context.applicationContext), MediaDisk(context.cacheDir)),
+        language = { context.launcherLocale().toLanguageTag() },
+        featured = FeaturedFeed(AndroidTvChannelProvider(context.applicationContext), MediaDisk(context.cacheDir)))
 
     private val generation = AtomicLong()
     private val wallpaperLock = Any()
@@ -41,7 +45,15 @@ class NativeMedia internal constructor(private val prefs: PreferenceAccess, priv
     override fun selectedCatalogs() = trakt.selected()
     override fun selectCatalogs(keys: List<String>) { generation.incrementAndGet(); trakt.select(keys) }
     override fun checkWatchNextPermission() = feed.permission()
-    override fun watchNext() = feed.refresh()
+    override fun recommendations() = featured?.refresh().orEmpty()
+    override fun watchNext(): List<ResumeItem> {
+        val published = feed.refresh()
+        if (!prefs.bool("show_watch_next_section")) return emptyList()
+        val limit = prefs.int("watch_next_max_items").takeIf { it > 0 }?.coerceAtMost(50) ?: 50
+        return (published + featured?.youtubeResume().orEmpty()).distinctBy { it.packageName to it.intentUri }
+            .filter { it.packageName !in prefs.strings("watch_next_excluded_packages") &&
+                (!prefs.bool("watch_next_hide_programs_without_images") || !it.image.isNullOrBlank()) }.take(limit)
+    }
     override fun restoredWatchNext() = feed.restore()
     override fun prepareWatchNextImage(item: ResumeItem) = feed.prepare(item)
     override fun selectWatchNext(item: ResumeItem) = feed.select(item)
@@ -62,7 +74,8 @@ class NativeMedia internal constructor(private val prefs: PreferenceAccess, priv
             val name = saved?.textOrNull("file")
             if (name != null && SAFE_BACKDROP.matches(name)) {
                 val file = File(disk.root, "trakt_backdrops/$name")
-                if (disk.isImage(file, MAX_BACKDROP_BYTES)) return@synchronized Backdrop(disk.relative(file), saved.textOrNull("title")).also { current = it }
+                if (disk.isImage(file, MAX_BACKDROP_BYTES)) return@synchronized Backdrop(disk.relative(file),
+                    saved.textOrNull("title"), saved.textOrNull("description")).also { current = it }
             }
             val available = File(disk.root, "trakt_backdrops").listFiles()?.filter { SAFE_BACKDROP.matches(it.name) }
                 ?.sortedByDescending { it.lastModified() }?.take(3).orEmpty()
@@ -99,7 +112,8 @@ class NativeMedia internal constructor(private val prefs: PreferenceAccess, priv
             val choices = candidates.shuffled().sortedBy { if (it.key == lastCandidate) 1 else 0 }
             for (candidate in choices.take(10)) {
                 ensureMediaActive()
-                val url = trakt.backdrop(candidate) ?: continue
+                val details = trakt.backdropDetails(candidate, language()) ?: continue
+                val url = details.imageUrl
                 ensureMediaActive()
                 if (stamp != generation.get() || !useTrakt()) return@synchronized current ?: restoredBackdrop()
                 val file = File(disk.root, "trakt_backdrops/${candidate.key}.jpg")
@@ -113,7 +127,7 @@ class NativeMedia internal constructor(private val prefs: PreferenceAccess, priv
                 if (stamp != generation.get() || !useTrakt()) return@synchronized current ?: restoredBackdrop()
                 ensureMediaActive()
                 lastCandidate = candidate.key
-                val result = show(Backdrop(disk.relative(file), candidate.title))
+                val result = show(Backdrop(disk.relative(file), details.title, details.description))
                 pruneBackdrops(file)
                 return@synchronized result
             }
@@ -134,6 +148,7 @@ class NativeMedia internal constructor(private val prefs: PreferenceAccess, priv
     private fun show(backdrop: Backdrop): Backdrop {
         current = backdrop
         val saved = JSONObject().put("title", backdrop.title ?: JSONObject.NULL)
+            .put("description", backdrop.description ?: JSONObject.NULL)
         if (backdrop.image.startsWith("cache:trakt_backdrops/")) saved.put("file", backdrop.image.substringAfterLast('/'))
         else saved.put("asset", backdrop.image)
         disk.writeJson("wallpaper", "last", saved)

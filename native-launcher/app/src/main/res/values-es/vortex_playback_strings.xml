@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="vortex_featured_next">Siguiente programa destacado</string>
+    <string name="vortex_synopsis_unavailable">No hay una sinopsis en tu idioma. Abre el programa para ver los detalles.</string>
+    <string name="vortex_synopsis_frieren">Tras derrotar al Rey Demonio, la longeva maga elfa Frieren emprende un nuevo viaje para comprender los lazos que formó con sus compañeros.</string>
+    <string name="vortex_content_google_tv_open">Abrir Google TV</string>
+    <string name="vortex_content_google_tv_error">No se pudo abrir Google TV.</string>
+    <string name="vortex_content_recommendation_description">Recomendado por %1$s. Ábrelo para ver el programa y las opciones de reproducción.</string>
+    <string name="vortex_content_platform">Plataforma: %1$s</string>
+    <string name="vortex_content_platform_unknown">Plataforma sin verificar</string>
+    <string name="vortex_content_watch_options">Dónde ver</string>
+    <string name="vortex_content_artwork_note">Esta es una imagen destacada. Las opciones se abren en el navegador; la disponibilidad y la suscripción dependen del proveedor y la región.</string>
+    <string name="vortex_content_no_browser">Instala un navegador de TV para abrir las opciones.</string>
+    <string name="vortex_content_youtube_open">Abrir YouTube</string>
+    <string name="vortex_content_youtube_hint">No hay contenido incompleto compartido. Algunos televisores no comparten el historial de YouTube aquí; consulta Historial dentro de YouTube.</string>
+</resources>

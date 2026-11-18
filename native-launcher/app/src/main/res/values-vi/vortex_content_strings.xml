@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="vortex_film_fight_club_title">Fight Club</string>
+    <string name="vortex_film_fight_club_description">Một nhân viên văn phòng tham gia câu lạc bộ đấu võ ngầm, rồi chứng kiến nó vượt ngoài tầm kiểm soát.</string>
+    <string name="vortex_film_forrest_gump_title">Forrest Gump</string>
+    <string name="vortex_film_forrest_gump_description">Forrest đi qua nhiều dấu mốc lịch sử nước Mỹ với niềm tin vào tình yêu và tình bạn.</string>
+    <string name="vortex_film_inception_title">Inception</string>
+    <string name="vortex_film_inception_description">Một chuyên gia xâm nhập giấc mơ nhận nhiệm vụ gieo một ý tưởng vào tâm trí người khác.</string>
+    <string name="vortex_film_interstellar_title">Interstellar</string>
+    <string name="vortex_film_interstellar_description">Khi Trái Đất dần không thể sinh sống, các nhà thám hiểm tìm một mái nhà mới giữa những vì sao.</string>
+    <string name="vortex_film_pulp_fiction_title">Pulp Fiction</string>
+    <string name="vortex_film_pulp_fiction_description">Cuộc đời hai sát thủ, một võ sĩ và những người ở Los Angeles đan xen qua các sự kiện bất ngờ.</string>
+    <string name="vortex_film_dark_knight_title">The Dark Knight</string>
+    <string name="vortex_film_dark_knight_description">Batman đối đầu Joker khi kế hoạch gây hỗn loạn của hắn đe dọa Gotham và thử thách những người bảo vệ thành phố.</string>
+    <string name="vortex_film_godfather_title">The Godfather</string>
+    <string name="vortex_film_godfather_description">Gia đình Corleone đối mặt với quyền lực và lòng trung thành khi Michael bị cuốn vào thế giới tội phạm.</string>
+    <string name="vortex_film_lotr_title">The Lord of the Rings: The Return of the King</string>
+    <string name="vortex_film_lotr_description">Frodo và Sam tiến đến Núi Doom trong khi đồng minh bước vào trận chiến cuối cùng vì Trung Địa.</string>
+    <string name="vortex_film_matrix_title">The Matrix</string>
+    <string name="vortex_film_matrix_description">Một lập trình viên phát hiện thế giới mình sống là mô phỏng và tham gia cuộc chiến giải phóng nhân loại.</string>
+    <string name="vortex_film_shawshank_title">The Shawshank Redemption</string>
+    <string name="vortex_film_shawshank_description">Hai tù nhân xây dựng tình bạn bền chặt và gìn giữ hy vọng sau nhiều năm trong nhà tù Shawshank.</string>
+    <string name="vortex_backdrop_unknown_title">Thông tin hình nền</string>
+    <string name="vortex_backdrop_unknown_description">Chưa có nội dung tóm tắt cho hình ảnh này.</string>
+    <string name="vortex_watch_next_permission">Cho phép dữ liệu xem</string>
+    <string name="vortex_watch_next_permission_hint">Cấp quyền đọc các nội dung đang xem dở được ứng dụng chia sẻ.</string>
+    <string name="vortex_watch_next_refreshed">Đã làm mới danh sách xem tiếp.</string>
+    <string name="vortex_watch_next_error">Không thể làm mới danh sách xem tiếp.</string>
+    <plurals name="vortex_resume_minutes_left">
+        <item quantity="other">Còn %1$d phút</item>
+    </plurals>
+</resources>

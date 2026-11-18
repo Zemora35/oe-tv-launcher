@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="vortex_quick_launch">Mở nhanh</string>
+    <string name="vortex_quick_launch_edit">Chỉnh sửa</string>
+    <string name="vortex_quick_launch_done">Xong</string>
+    <string name="vortex_quick_launch_empty">Chọn Chỉnh sửa để thêm ứng dụng yêu thích.</string>
+    <string name="vortex_quick_launch_choose">OK: chọn/bỏ · Đã chọn %1$d/%2$d · Hàng theo thứ tự chọn · Xong hoặc Quay lại để lưu</string>
+    <string name="vortex_quick_launch_selected">Đã chọn yêu thích</string>
+    <string name="vortex_quick_launch_unselected">Chưa chọn</string>
+    <string name="vortex_quick_launch_add">Thêm vào Mở nhanh</string>
+    <string name="vortex_quick_launch_remove">Xóa khỏi Mở nhanh</string>
+    <string name="vortex_quick_launch_limit">Chọn tối đa %1$d ứng dụng. Bỏ một ứng dụng trước khi thêm ứng dụng khác.</string>
+    <string name="vortex_quick_launch_save_error">Không lưu được mục yêu thích. Vui lòng thử lại.</string>
+    <string name="vortex_grid_all_subtitle">Duyệt và mở các ứng dụng đã cài trên O.E tv.</string>
+    <string name="vortex_grid_history_subtitle">Ứng dụng đã mở từ O.E tv và thời gian truy cập gần nhất.</string>
+    <string name="vortex_grid_search">Tìm ứng dụng</string>
+    <string name="vortex_grid_history_search">Tìm trong lịch sử</string>
+    <string name="vortex_grid_filter">Lọc: %1$s</string>
+    <string name="vortex_grid_sort">Sắp xếp: %1$s</string>
+    <string name="vortex_grid_type_all">Tất cả</string>
+    <string name="vortex_grid_type_tv">Ứng dụng TV</string>
+    <string name="vortex_grid_type_android">Ứng dụng khác</string>
+    <string name="vortex_grid_category_all">Tất cả</string>
+    <string name="vortex_grid_category_streaming">Trực tuyến</string>
+    <string name="vortex_grid_category_media">Đa phương tiện</string>
+    <string name="vortex_grid_category_tools">Công cụ</string>
+    <string name="vortex_grid_category_system">Hệ thống</string>
+    <string name="vortex_grid_sort_az">A–Z</string>
+    <string name="vortex_grid_sort_za">Z–A</string>
+    <string name="vortex_grid_sort_recent">Mới truy cập</string>
+    <string name="vortex_grid_no_results">Không có ứng dụng phù hợp với tìm kiếm hoặc bộ lọc.</string>
+    <string name="vortex_grid_history_empty">Ứng dụng được mở từ O.E tv sẽ xuất hiện ở đây.</string>
+    <string name="vortex_grid_time_unknown">Chưa ghi thời gian</string>
+    <string name="vortex_grid_last_visit">Lần truy cập cuối: %1$s</string>
+    <string name="vortex_grid_close">Quay lại</string>
+    <string name="vortex_grid_position">%1$d / %2$d</string>
+    <string name="vortex_grid_clear_search">Xóa tìm kiếm</string>
+    <string name="vortex_grid_choose_filter">Lọc ứng dụng</string>
+    <string name="vortex_grid_choose_sort">Sắp xếp ứng dụng</string>
+    <string name="vortex_grid_open_app">Mở %1$s</string>
+    <string name="vortex_grid_app_actions">Tùy chọn ứng dụng</string>
+</resources>

@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="vortex_legacy_sources" translatable="false">
+        <item>Settings</item>
+        <item>General settings</item>
+        <item>Applications</item>
+        <item>Interface</item>
+        <item>System</item>
+        <item>System settings</item>
+        <item>Appearance</item>
+        <item>Accent color</item>
+        <item>Status bar</item>
+        <item>Miscellaneous</item>
+        <item>Updates</item>
+        <item>Open</item>
+        <item>Cancel</item>
+        <item>Confirm</item>
+        <item>Save</item>
+        <item>Delete</item>
+        <item>Remove</item>
+        <item>Cinematic vortex home</item>
+        <item>Reduce cinematic motion</item>
+        <item>Add row</item>
+        <item>Row name</item>
+        <item>App order</item>
+        <item>Manual</item>
+        <item>Alphabetical</item>
+        <item>Last used</item>
+        <item>Show on home screen</item>
+        <item>Hide from home screen</item>
+        <item>Move row up</item>
+        <item>Move row down</item>
+        <item>Delete row</item>
+        <item>Remove channel</item>
+        <item>Installed apps</item>
+        <item>No installed apps.</item>
+        <item>App no longer installed</item>
+        <item>Row no longer exists</item>
+        <item>Add to / remove from rows</item>
+        <item>App info</item>
+        <item>Uninstall</item>
+        <item>Android app</item>
+        <item>TV app</item>
+        <item>TV channel</item>
+        <item>Hidden</item>
+        <item>Shown</item>
+        <item>Hidden on home screen</item>
+        <item>Show, hide and manage TV and Android applications</item>
+        <item>Show channels from your apps as rows</item>
+        <item>TV channels</item>
+        <item>Allows reading the channels your apps publish</item>
+        <item>Not publishing right now</item>
+        <item>Loading channels…</item>
+        <item>No app on this TV publishes channels right now.</item>
+        <item>Selected channels become rows on Home. Move them in Applications.</item>
+        <item>Applications stay installed. Only this row and its membership are removed.</item>
+        <item>The app keeps publishing this channel. You can add it back under TV channels.</item>
+        <item>Up/Down to move · Select to finish</item>
+        <item>Left/Right to move · Select to finish</item>
+        <item>Select to move · Hold/Right to edit</item>
+        <item>Choose packaged icon / banner</item>
+        <item>Choose app icon / banner</item>
+        <item>Restore application artwork</item>
+        <item>Loading included artwork…</item>
+        <item>App icon background opacity</item>
+        <item>App row layout</item>
+        <item>Focused row height</item>
+        <item>Row position</item>
+        <item>App size</item>
+        <item>Space between apps</item>
+        <item>Space between rows</item>
+        <item>Row below opacity</item>
+        <item>Reset app row layout</item>
+        <item>How far up the screen the active row sits</item>
+        <item>Distance from the left edge of the screen</item>
+        <item>Size of the apps in every row</item>
+        <item>Distance between apps in a row</item>
+        <item>Distance from one row of apps to the next</item>
+        <item>Visibility of the rows under the active row</item>
+        <item>Left and Right change the selected setting. Home updates as you go.</item>
+        <item>Left and Right change the selected setting. Home updates as you go. Big picture mode keeps its own layout.</item>
+        <item>Stops just below Continue Watching</item>
+        <item>Stops at the top of the screen</item>
+        <item>Stops just above the app row</item>
+        <item>Card size</item>
+        <item>Second card size</item>
+        <item>Second card opacity</item>
+        <item>Space between cards</item>
+        <item>How far up the screen the cards end</item>
+        <item>Size of the selected card</item>
+        <item>Compared with the selected card</item>
+        <item>Visibility of the card next in line</item>
+        <item>Distance between the two cards</item>
+        <item>Continue Watching</item>
+        <item>Continue Watching layout</item>
+        <item>Show Continue Watching</item>
+        <item>Maximum Continue Watching items</item>
+        <item>Maximum items</item>
+        <item>Unlimited</item>
+        <item>Big picture / hero mode</item>
+        <item>Hide items without images</item>
+        <item>Grant TV listings permission</item>
+        <item>Allows access to the TV\'s public Continue Watching provider</item>
+        <item>Refresh Continue Watching</item>
+        <item>Continue Watching refreshed</item>
+        <item>Include this app in Continue Watching</item>
+        <item>Reset Continue Watching layout</item>
+        <item>Backdrops</item>
+        <item>Next backdrop</item>
+        <item>Choose included backdrop</item>
+        <item>Included backdrops</item>
+        <item>10 included cinematic backdrops</item>
+        <item>Change backdrop every</item>
+        <item>Refresh backdrop on return</item>
+        <item>Connect Trakt</item>
+        <item>Trakt connected</item>
+        <item>Disconnect Trakt</item>
+        <item>Use Trakt backdrops</item>
+        <item>Choose movie and TV backdrops from Trakt</item>
+        <item>Trakt is not configured in this build</item>
+        <item>Catalogs &amp; popular lists</item>
+        <item>Trakt catalogs &amp; lists</item>
+        <item>Fetch popular Trakt lists</item>
+        <item>Select at least one catalog or list to use Trakt backdrops.</item>
+        <item>Backdrops provided by TMDB. This product uses the TMDB API but is not endorsed or certified by TMDB.</item>
+        <item>Cancel device login</item>
+        <item>Back to backdrops</item>
+        <item>Try again</item>
+        <item>Activation code expired. Connect again.</item>
+        <item>Scan with your phone to approve</item>
+        <item>Or open auth.trakt.tv/activate and enter</item>
+        <item>QR code to activate Trakt</item>
+        <item>Date and time formats</item>
+        <item>Show date</item>
+        <item>Show time</item>
+        <item>Show network indicator</item>
+        <item>Auto-hide status bar</item>
+        <item>Custom date format</item>
+        <item>Custom time format</item>
+        <item>Format pattern</item>
+        <item>Network</item>
+        <item>Network settings</item>
+        <item>Network unavailable</item>
+        <item>No connection</item>
+        <item>Ethernet</item>
+        <item>Mobile</item>
+        <item>Connected</item>
+        <item>Preview clock</item>
+        <item>Screensaver clock style</item>
+        <item>Android screensaver settings</item>
+        <item>Start screensaver</item>
+        <item>Show app names below icons</item>
+        <item>App key click sound</item>
+        <item>Animated focus border</item>
+        <item>Show focus borders</item>
+        <item>Focus border thickness</item>
+        <item>Custom hex color</item>
+        <item>Six hexadecimal digits, for example A78BFA</item>
+        <item>Enter exactly six hexadecimal digits</item>
+        <item>White</item>
+        <item>Black</item>
+        <item>Grey</item>
+        <item>Blue</item>
+        <item>Purple</item>
+        <item>Cyan</item>
+        <item>Green</item>
+        <item>Orange</item>
+        <item>Pink</item>
+        <item>Yellow</item>
+        <item>Amber</item>
+        <item>Ice blue</item>
+        <item>Indigo</item>
+        <item>Teal</item>
+        <item>Rose</item>
+        <item>Lime</item>
+        <item>Minimal</item>
+        <item>Elegant</item>
+        <item>Digital</item>
+        <item>Bold</item>
+        <item>Pixel</item>
+        <item>Check for updates</item>
+        <item>Check again</item>
+        <item>Install updates automatically</item>
+        <item>Downloaded and ready to install</item>
+        <item>No newer published release is available.</item>
+        <item>Read the release notes below before downloading</item>
+        <item>About Backdrop Launcher</item>
+        <item>Loading Backdrop…</item>
+        <item>Saving…</item>
+        <item>Saving applications…</item>
+        <item>Creating row…</item>
+        <item>Deleting row…</item>
+        <item>Removing channel…</item>
+        <item>Saving artwork…</item>
+        <item>Setting backdrop…</item>
+        <item>Loading backdrop…</item>
+        <item>Refreshing Continue Watching…</item>
+        <item>Requesting Trakt code…</item>
+        <item>Waiting for approval…</item>
+        <item>Cancelling login…</item>
+        <item>Fetching popular lists…</item>
+        <item>Saving catalogs…</item>
+        <item>Checking for updates…</item>
+        <item>Downloading and verifying update…</item>
+        <item>Unable to complete this action. Try again.</item>
+        <item>Unable to load these settings</item>
+        <item>Unable to contact Trakt</item>
+        <item>Application is unavailable</item>
+        <item>Application could not be opened</item>
+        <item>Playback target is unavailable</item>
+        <item>Update saved. Install it from Settings.</item>
+        <item>Launcher data could not be opened. Your existing data was preserved.</item>
+        <item>Watch Next permission is available in Settings</item>
+        <item>Reorder in %1$s</item>
+        <item>Remove from %1$s</item>
+        <item>Rows for %1$s</item>
+        <item>Delete %1$s?</item>
+        <item>Remove %1$s?</item>
+        <item>%1$d minutes</item>
+        <item>%1$d min</item>
+        <item>%1$d items</item>
+        <item>%1$d apps</item>
+        <item>Install update %1$s</item>
+        <item>Download %1$s</item>
+        <item>Latest release: %1$s</item>
+        <item>TV Apps</item>
+        <item>Android Apps</item>
+        <item>Entertainment</item>
+        <item>denied</item>
+        <item>expired</item>
+        <item>cancelled</item>
+        <item>invalid</item>
+        <item>already used</item>
+    </string-array>
+    <array name="vortex_legacy_ids" translatable="false">
+        <item>@string/vortex_legacy_settings</item>
+        <item>@string/vortex_legacy_general_settings</item>
+        <item>@string/vortex_legacy_applications</item>
+        <item>@string/vortex_legacy_interface</item>
+        <item>@string/vortex_legacy_system</item>
+        <item>@string/vortex_legacy_system_settings</item>
+        <item>@string/vortex_legacy_appearance</item>
+        <item>@string/vortex_legacy_accent_color</item>
+        <item>@string/vortex_legacy_status_bar</item>
+        <item>@string/vortex_legacy_miscellaneous</item>
+        <item>@string/vortex_legacy_updates</item>
+        <item>@string/vortex_legacy_open</item>
+        <item>@string/vortex_legacy_cancel</item>
+        <item>@string/vortex_legacy_confirm</item>
+        <item>@string/vortex_legacy_save</item>
+        <item>@string/vortex_legacy_delete</item>
+        <item>@string/vortex_legacy_remove</item>
+        <item>@string/vortex_legacy_cinematic_vortex_home</item>
+        <item>@string/vortex_legacy_reduce_cinematic_motion</item>
+        <item>@string/vortex_legacy_add_row</item>
+        <item>@string/vortex_legacy_row_name</item>
+        <item>@string/vortex_legacy_app_order</item>
+        <item>@string/vortex_legacy_manual</item>
+        <item>@string/vortex_legacy_alphabetical</item>
+        <item>@string/vortex_legacy_last_used</item>
+        <item>@string/vortex_legacy_show_on_home_screen</item>
+        <item>@string/vortex_legacy_hide_from_home_screen</item>
+        <item>@string/vortex_legacy_move_row_up</item>
+        <item>@string/vortex_legacy_move_row_down</item>
+        <item>@string/vortex_legacy_delete_row</item>
+        <item>@string/vortex_legacy_remove_channel</item>
+        <item>@string/vortex_legacy_installed_apps</item>
+        <item>@string/vortex_legacy_no_installed_apps</item>
+        <item>@string/vortex_legacy_app_no_longer_installed</item>
+        <item>@string/vortex_legacy_row_no_longer_exists</item>
+        <item>@string/vortex_legacy_add_to_remove_from_rows</item>
+        <item>@string/vortex_legacy_app_info</item>
+        <item>@string/vortex_legacy_uninstall</item>
+        <item>@string/vortex_legacy_android_app</item>
+        <item>@string/vortex_legacy_tv_app</item>
+        <item>@string/vortex_legacy_tv_channel</item>
+        <item>@string/vortex_legacy_hidden</item>
+        <item>@string/vortex_legacy_shown</item>
+        <item>@string/vortex_legacy_hidden_on_home_screen</item>
+        <item>@string/vortex_legacy_show_hide_and_manage_tv_and_android_applications</item>
+        <item>@string/vortex_legacy_show_channels_from_your_apps_as_rows</item>
+        <item>@string/vortex_legacy_tv_channels</item>
+        <item>@string/vortex_legacy_allows_reading_the_channels_your_apps_publish</item>
+        <item>@string/vortex_legacy_not_publishing_right_now</item>
+        <item>@string/vortex_legacy_loading_channels</item>
+        <item>@string/vortex_legacy_no_app_on_this_tv_publishes_channels_right_now</item>
+        <item>@string/vortex_legacy_selected_channels_become_rows_on_home_move_them_in_applications</item>
+        <item>@string/vortex_legacy_applications_stay_installed_only_this_row_and_its_membership_are_removed</item>
+        <item>@string/vortex_legacy_the_app_keeps_publishing_this_channel_you_can_add_it_back_under_tv_channels</item>
+        <item>@string/vortex_legacy_up_down_to_move_select_to_finish</item>
+        <item>@string/vortex_legacy_left_right_to_move_select_to_finish</item>
+        <item>@string/vortex_legacy_select_to_move_hold_right_to_edit</item>
+        <item>@string/vortex_legacy_choose_packaged_icon_banner</item>
+        <item>@string/vortex_legacy_choose_app_icon_banner</item>
+        <item>@string/vortex_legacy_restore_application_artwork</item>
+        <item>@string/vortex_legacy_loading_included_artwork</item>
+        <item>@string/vortex_legacy_app_icon_background_opacity</item>
+        <item>@string/vortex_legacy_app_row_layout</item>
+        <item>@string/vortex_legacy_focused_row_height</item>
+        <item>@string/vortex_legacy_row_position</item>
+        <item>@string/vortex_legacy_app_size</item>
+        <item>@string/vortex_legacy_space_between_apps</item>
+        <item>@string/vortex_legacy_space_between_rows</item>
+        <item>@string/vortex_legacy_row_below_opacity</item>
+        <item>@string/vortex_legacy_reset_app_row_layout</item>
+        <item>@string/vortex_legacy_how_far_up_the_screen_the_active_row_sits</item>
+        <item>@string/vortex_legacy_distance_from_the_left_edge_of_the_screen</item>
+        <item>@string/vortex_legacy_size_of_the_apps_in_every_row</item>
+        <item>@string/vortex_legacy_distance_between_apps_in_a_row</item>
+        <item>@string/vortex_legacy_distance_from_one_row_of_apps_to_the_next</item>
+        <item>@string/vortex_legacy_visibility_of_the_rows_under_the_active_row</item>
+        <item>@string/vortex_legacy_left_and_right_change_the_selected_setting_home_updates_as_you_go</item>
+        <item>@string/vortex_legacy_left_and_right_change_the_selected_setting_home_updates_as_you_go_big_picture_mode_keeps_its_own_layout</item>
+        <item>@string/vortex_legacy_stops_just_below_continue_watching</item>
+        <item>@string/vortex_legacy_stops_at_the_top_of_the_screen</item>
+        <item>@string/vortex_legacy_stops_just_above_the_app_row</item>
+        <item>@string/vortex_legacy_card_size</item>
+        <item>@string/vortex_legacy_second_card_size</item>
+        <item>@string/vortex_legacy_second_card_opacity</item>
+        <item>@string/vortex_legacy_space_between_cards</item>
+        <item>@string/vortex_legacy_how_far_up_the_screen_the_cards_end</item>
+        <item>@string/vortex_legacy_size_of_the_selected_card</item>
+        <item>@string/vortex_legacy_compared_with_the_selected_card</item>
+        <item>@string/vortex_legacy_visibility_of_the_card_next_in_line</item>
+        <item>@string/vortex_legacy_distance_between_the_two_cards</item>
+        <item>@string/vortex_legacy_continue_watching</item>
+        <item>@string/vortex_legacy_continue_watching_layout</item>
+        <item>@string/vortex_legacy_show_continue_watching</item>
+        <item>@string/vortex_legacy_maximum_continue_watching_items</item>
+        <item>@string/vortex_legacy_maximum_items</item>
+        <item>@string/vortex_legacy_unlimited</item>
+        <item>@string/vortex_legacy_big_picture_hero_mode</item>
+        <item>@string/vortex_legacy_hide_items_without_images</item>
+        <item>@string/vortex_legacy_grant_tv_listings_permission</item>
+        <item>@string/vortex_legacy_allows_access_to_the_tv_s_public_continue_watching_provider</item>
+        <item>@string/vortex_legacy_refresh_continue_watching</item>
+        <item>@string/vortex_legacy_continue_watching_refreshed</item>
+        <item>@string/vortex_legacy_include_this_app_in_continue_watching</item>
+        <item>@string/vortex_legacy_reset_continue_watching_layout</item>
+        <item>@string/vortex_legacy_backdrops</item>
+        <item>@string/vortex_legacy_next_backdrop</item>
+        <item>@string/vortex_legacy_choose_included_backdrop</item>
+        <item>@string/vortex_legacy_included_backdrops</item>
+        <item>@string/vortex_legacy_10_included_cinematic_backdrops</item>
+        <item>@string/vortex_legacy_change_backdrop_every</item>
+        <item>@string/vortex_legacy_refresh_backdrop_on_return</item>
+        <item>@string/vortex_legacy_connect_trakt</item>
+        <item>@string/vortex_legacy_trakt_connected</item>
+        <item>@string/vortex_legacy_disconnect_trakt</item>
+        <item>@string/vortex_legacy_use_trakt_backdrops</item>
+        <item>@string/vortex_legacy_choose_movie_and_tv_backdrops_from_trakt</item>
+        <item>@string/vortex_legacy_trakt_is_not_configured_in_this_build</item>
+        <item>@string/vortex_legacy_catalogs_popular_lists</item>
+        <item>@string/vortex_legacy_trakt_catalogs_lists</item>
+        <item>@string/vortex_legacy_fetch_popular_trakt_lists</item>
+        <item>@string/vortex_legacy_select_at_least_one_catalog_or_list_to_use_trakt_backdrops</item>
+        <item>@string/vortex_legacy_backdrops_provided_by_tmdb_this_product_uses_the_tmdb_api_but_is_not_endorsed_or_certified_by_tmdb</item>
+        <item>@string/vortex_legacy_cancel_device_login</item>
+        <item>@string/vortex_legacy_back_to_backdrops</item>
+        <item>@string/vortex_legacy_try_again</item>
+        <item>@string/vortex_legacy_activation_code_expired_connect_again</item>
+        <item>@string/vortex_legacy_scan_with_your_phone_to_approve</item>
+        <item>@string/vortex_legacy_or_open_auth_trakt_tv_activate_and_enter</item>
+        <item>@string/vortex_legacy_qr_code_to_activate_trakt</item>
+        <item>@string/vortex_legacy_date_and_time_formats</item>
+        <item>@string/vortex_legacy_show_date</item>
+        <item>@string/vortex_legacy_show_time</item>
+        <item>@string/vortex_legacy_show_network_indicator</item>
+        <item>@string/vortex_legacy_auto_hide_status_bar</item>
+        <item>@string/vortex_legacy_custom_date_format</item>
+        <item>@string/vortex_legacy_custom_time_format</item>
+        <item>@string/vortex_legacy_format_pattern</item>
+        <item>@string/vortex_legacy_network</item>
+        <item>@string/vortex_legacy_network_settings</item>
+        <item>@string/vortex_legacy_network_unavailable</item>
+        <item>@string/vortex_legacy_no_connection</item>
+        <item>@string/vortex_legacy_ethernet</item>
+        <item>@string/vortex_legacy_mobile</item>
+        <item>@string/vortex_legacy_connected</item>
+        <item>@string/vortex_legacy_preview_clock</item>
+        <item>@string/vortex_legacy_screensaver_clock_style</item>
+        <item>@string/vortex_legacy_android_screensaver_settings</item>
+        <item>@string/vortex_legacy_start_screensaver</item>
+        <item>@string/vortex_legacy_show_app_names_below_icons</item>
+        <item>@string/vortex_legacy_app_key_click_sound</item>
+        <item>@string/vortex_legacy_animated_focus_border</item>
+        <item>@string/vortex_legacy_show_focus_borders</item>
+        <item>@string/vortex_legacy_focus_border_thickness</item>
+        <item>@string/vortex_legacy_custom_hex_color</item>
+        <item>@string/vortex_legacy_six_hexadecimal_digits_for_example_a78bfa</item>
+        <item>@string/vortex_legacy_enter_exactly_six_hexadecimal_digits</item>
+        <item>@string/vortex_legacy_white</item>
+        <item>@string/vortex_legacy_black</item>
+        <item>@string/vortex_legacy_grey</item>
+        <item>@string/vortex_legacy_blue</item>
+        <item>@string/vortex_legacy_purple</item>
+        <item>@string/vortex_legacy_cyan</item>
+        <item>@string/vortex_legacy_green</item>
+        <item>@string/vortex_legacy_orange</item>
+        <item>@string/vortex_legacy_pink</item>
+        <item>@string/vortex_legacy_yellow</item>
+        <item>@string/vortex_legacy_amber</item>
+        <item>@string/vortex_legacy_ice_blue</item>
+        <item>@string/vortex_legacy_indigo</item>
+        <item>@string/vortex_legacy_teal</item>
+        <item>@string/vortex_legacy_rose</item>
+        <item>@string/vortex_legacy_lime</item>
+        <item>@string/vortex_legacy_minimal</item>
+        <item>@string/vortex_legacy_elegant</item>
+        <item>@string/vortex_legacy_digital</item>
+        <item>@string/vortex_legacy_bold</item>
+        <item>@string/vortex_legacy_pixel</item>
+        <item>@string/vortex_legacy_check_for_updates</item>
+        <item>@string/vortex_legacy_check_again</item>
+        <item>@string/vortex_legacy_install_updates_automatically</item>
+        <item>@string/vortex_legacy_downloaded_and_ready_to_install</item>
+        <item>@string/vortex_legacy_no_newer_published_release_is_available</item>
+        <item>@string/vortex_legacy_read_the_release_notes_below_before_downloading</item>
+        <item>@string/vortex_legacy_about_backdrop_launcher</item>
+        <item>@string/vortex_legacy_loading_backdrop</item>
+        <item>@string/vortex_legacy_saving</item>
+        <item>@string/vortex_legacy_saving_applications</item>
+        <item>@string/vortex_legacy_creating_row</item>
+        <item>@string/vortex_legacy_deleting_row</item>
+        <item>@string/vortex_legacy_removing_channel</item>
+        <item>@string/vortex_legacy_saving_artwork</item>
+        <item>@string/vortex_legacy_setting_backdrop</item>
+        <item>@string/vortex_legacy_loading_backdrop_192</item>
+        <item>@string/vortex_legacy_refreshing_continue_watching</item>
+        <item>@string/vortex_legacy_requesting_trakt_code</item>
+        <item>@string/vortex_legacy_waiting_for_approval</item>
+        <item>@string/vortex_legacy_cancelling_login</item>
+        <item>@string/vortex_legacy_fetching_popular_lists</item>
+        <item>@string/vortex_legacy_saving_catalogs</item>
+        <item>@string/vortex_legacy_checking_for_updates</item>
+        <item>@string/vortex_legacy_downloading_and_verifying_update</item>
+        <item>@string/vortex_legacy_unable_to_complete_this_action_try_again</item>
+        <item>@string/vortex_legacy_unable_to_load_these_settings</item>
+        <item>@string/vortex_legacy_unable_to_contact_trakt</item>
+        <item>@string/vortex_legacy_application_is_unavailable</item>
+        <item>@string/vortex_legacy_application_could_not_be_opened</item>
+        <item>@string/vortex_legacy_playback_target_is_unavailable</item>
+        <item>@string/vortex_legacy_update_saved_install_it_from_settings</item>
+        <item>@string/vortex_legacy_launcher_data_could_not_be_opened_your_existing_data_was_preserved</item>
+        <item>@string/vortex_legacy_watch_next_permission_is_available_in_settings</item>
+        <item>@string/vortex_legacy_reorder_in_1_s</item>
+        <item>@string/vortex_legacy_remove_from_1_s</item>
+        <item>@string/vortex_legacy_rows_for_1_s</item>
+        <item>@string/vortex_legacy_delete_1_s</item>
+        <item>@string/vortex_legacy_remove_1_s</item>
+        <item>@string/vortex_legacy_1_d_minutes</item>
+        <item>@string/vortex_legacy_1_d_min</item>
+        <item>@string/vortex_legacy_1_d_items</item>
+        <item>@string/vortex_legacy_1_d_apps</item>
+        <item>@string/vortex_legacy_install_update_1_s</item>
+        <item>@string/vortex_legacy_download_1_s</item>
+        <item>@string/vortex_legacy_latest_release_1_s</item>
+        <item>@string/vortex_legacy_tv_apps</item>
+        <item>@string/vortex_legacy_android_apps</item>
+        <item>@string/vortex_legacy_entertainment</item>
+        <item>@string/vortex_legacy_denied</item>
+        <item>@string/vortex_legacy_expired</item>
+        <item>@string/vortex_legacy_cancelled</item>
+        <item>@string/vortex_legacy_invalid</item>
+        <item>@string/vortex_legacy_already_used</item>
+    </array>
+</resources>

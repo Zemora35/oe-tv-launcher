@@ -1,5 +1,9 @@
 package nl.neerdael.backdrop_launcher.ui
 
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import nl.neerdael.backdrop_launcher.R
+
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -91,11 +95,11 @@ internal fun SettingsPanel(title: String, entries: List<SettingsEntry>,
         Column(Modifier.fillMaxHeight().width(NativeSettingsStyle.panelWidth).shadow(6.dp, RectangleShape, clip = false).background(NativeSettingsStyle.body)) {
             Box(Modifier.fillMaxWidth().height(NativeSettingsStyle.headerHeight).background(NativeSettingsStyle.header)
                 .padding(start = 24.dp, end = 56.dp, top = 27.dp), contentAlignment = Alignment.CenterStart) {
-                Text(if (translateTitle) labels[title] ?: title else title, style = NativeSettingsStyle.titleStyle,
+                Text(if (translateTitle) uiText(title, labels) else title, style = NativeSettingsStyle.titleStyle,
                     maxLines = 2, overflow = TextOverflow.Ellipsis)
             }
-            busy?.let { Text(it, modifier = Modifier.padding(start = 24.dp, end = 56.dp, top = 8.dp), style = NativeSettingsStyle.summaryStyle) }
-            error?.let { Text(it, modifier = Modifier.padding(start = 24.dp, end = 56.dp, top = 8.dp), style = NativeSettingsStyle.summaryStyle.copy(color = Color(0xffff8a80))) }
+            busy?.let { Text(uiText(it, labels), modifier = Modifier.padding(start = 24.dp, end = 56.dp, top = 8.dp), style = NativeSettingsStyle.summaryStyle) }
+            error?.let { Text(uiText(it, labels), modifier = Modifier.padding(start = 24.dp, end = 56.dp, top = 8.dp), style = NativeSettingsStyle.summaryStyle.copy(color = Color(0xffff8a80))) }
             if (artworkGrid) LazyVerticalGrid(GridCells.Fixed(3), Modifier.weight(1f).layoutBounds(viewport), grid,
                 PaddingValues(start = 24.dp, end = 56.dp, top = 8.dp, bottom = 34.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -108,7 +112,7 @@ internal fun SettingsPanel(title: String, entries: List<SettingsEntry>,
                 itemsIndexed(entries, key = { _, entry -> entry.id }, contentType = { _, entry -> if (entry.section) "section" else "setting" }) { _, entry ->
                     if (entry.section) {
                         Box(Modifier.fillMaxWidth().height(38.dp).padding(start = 24.dp, end = 56.dp), contentAlignment = Alignment.CenterStart) {
-                            Text(labels[entry.title] ?: entry.title, style = NativeSettingsStyle.sectionStyle)
+                            Text(uiText(entry.title, labels), style = NativeSettingsStyle.sectionStyle)
                         }
                     } else {
                         val color = if (entry.enabled) NativeSettingsStyle.primary else NativeSettingsStyle.disabled
@@ -117,7 +121,9 @@ internal fun SettingsPanel(title: String, entries: List<SettingsEntry>,
                             modifier = Modifier.fillMaxWidth().then(focus).onPreviewKeyEvent {
                                 busy != null || entry.onKey?.invoke(it) == true
                             }.semantics(mergeDescendants = true) {
-                                contentDescription = listOf(entry.title, entry.value, entry.subtitle).filter { it.isNotBlank() }.joinToString(", ")
+                                contentDescription = listOf(
+                                    if (entry.localize) uiText(entry.title, labels) else entry.title,
+                                    uiText(entry.value, labels), uiText(entry.subtitle, labels)).filter { it.isNotBlank() }.joinToString(", ")
                                 entry.slider?.let { progressBarRangeInfo = ProgressBarRangeInfo(it, 0f..1f) }
                                 entry.checked?.let { checked ->
                                     role = when (entry.control) { SettingsControl.SWITCH -> Role.Switch; SettingsControl.RADIO -> Role.RadioButton; else -> Role.Checkbox }
@@ -135,17 +141,17 @@ internal fun SettingsPanel(title: String, entries: List<SettingsEntry>,
                                         Spacer(Modifier.width(16.dp))
                                     }
                                     Column(Modifier.weight(1f).padding(top = 14.dp, bottom = if (entry.slider != null) 6.dp else 13.dp)) {
-                                        Text(if (entry.localize) labels[entry.title] ?: entry.title else entry.title,
+                                        Text(if (entry.localize) uiText(entry.title, labels) else entry.title,
                                             style = NativeSettingsStyle.primaryStyle.copy(color = color))
                                         if (entry.subtitle.isNotBlank()) {
                                             Spacer(Modifier.height(2.dp))
-                                            Text(entry.subtitle, style = NativeSettingsStyle.summaryStyle.copy(color = if (entry.enabled) NativeSettingsStyle.secondary else NativeSettingsStyle.disabled),
+                                            Text(uiText(entry.subtitle, labels), style = NativeSettingsStyle.summaryStyle.copy(color = if (entry.enabled) NativeSettingsStyle.secondary else NativeSettingsStyle.disabled),
                                                 maxLines = 4, overflow = TextOverflow.Ellipsis)
                                         }
                                     }
                                     if (entry.checked != null && (entry.control == SettingsControl.SWITCH || entry.artwork != null)) {
                                         Spacer(Modifier.width(16.dp)); NativeSettingsControl(entry.checked, entry.control, entry.enabled)
-                                    } else if (entry.value.isNotBlank()) Text(entry.value, Modifier.padding(start = 16.dp).widthIn(max = 112.dp), style = NativeSettingsStyle.primaryStyle.copy(color = color), maxLines = 2, overflow = TextOverflow.Ellipsis)
+                                    } else if (entry.value.isNotBlank()) Text(uiText(entry.value, labels), Modifier.padding(start = 16.dp).widthIn(max = 112.dp), style = NativeSettingsStyle.primaryStyle.copy(color = color), maxLines = 2, overflow = TextOverflow.Ellipsis)
                                 }
                                 entry.slider?.let { NativeSettingsSlider(it, entry.enabled, Modifier.padding(start = 24.dp, end = 56.dp, bottom = 12.dp)) }
                             }
@@ -187,7 +193,7 @@ internal fun PromptDialog(prompt: TextPrompt, close: () -> Unit) {
     Dialog(close) {
         Column(Modifier.width(NativeSettingsStyle.panelWidth).background(NativeSettingsStyle.body, RoundedCornerShape(2.dp)).padding(24.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)) {
-            Text(prompt.title, style = NativeSettingsStyle.titleStyle)
+            Text(uiText(prompt.title, labels), style = NativeSettingsStyle.titleStyle)
             NativeSettingsSurface({ editing = true; field.requestFocus(); keyboard?.show() }, Modifier.fillMaxWidth()) {
                 BasicTextField(text, { text = it }, textStyle = NativeSettingsStyle.primaryStyle,
                     singleLine = true, cursorBrush = SolidColor(NativeSettingsStyle.accent), readOnly = !editing,
@@ -214,11 +220,11 @@ internal fun ConfirmationDialog(value: Confirmation, close: () -> Unit) {
     Dialog(close) {
         Column(Modifier.width(NativeSettingsStyle.panelWidth).background(NativeSettingsStyle.body, RoundedCornerShape(2.dp)).padding(24.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)) {
-            Text(value.title, style = NativeSettingsStyle.titleStyle)
-            Text(value.body, style = NativeSettingsStyle.primaryStyle)
+            Text(uiText(value.title, LocalUiLanguage.current), style = NativeSettingsStyle.titleStyle)
+            Text(uiText(value.body, LocalUiLanguage.current), style = NativeSettingsStyle.primaryStyle)
             Row(horizontalArrangement = Arrangement.spacedBy(14.dp)) {
                 NativeSettingsSurface(close, Modifier.focusRequester(confirm)) { Text(LocalUiLanguage.current["Cancel"] ?: "Cancel", Modifier.heightIn(min = 48.dp).padding(horizontal = 12.dp, vertical = 14.dp), style = NativeSettingsStyle.primaryStyle.copy(color = NativeSettingsStyle.accent)) }
-                NativeSettingsSurface({ value.confirm(); close() }) { Text(value.confirmLabel, Modifier.heightIn(min = 48.dp).padding(horizontal = 12.dp, vertical = 14.dp), style = NativeSettingsStyle.primaryStyle.copy(color = NativeSettingsStyle.accent)) }
+                NativeSettingsSurface({ value.confirm(); close() }) { Text(uiText(value.confirmLabel, LocalUiLanguage.current), Modifier.heightIn(min = 48.dp).padding(horizontal = 12.dp, vertical = 14.dp), style = NativeSettingsStyle.primaryStyle.copy(color = NativeSettingsStyle.accent)) }
             }
             LaunchedEffect(value) { withFrameNanos { }; confirm.requestFocus() }
         }
@@ -249,6 +255,6 @@ internal fun ReadableText(text: String, modifier: Modifier = Modifier) {
 @Composable
 fun LoadingHome(error: String?) {
     Box(Modifier.fillMaxSize().background(Color.Black).padding(32.dp)) {
-        Text(error ?: "Loading Backdrop…", color = Color.White, fontSize = 20.sp)
+        Text(error?.let { uiText(it, nativeUiLanguage(LocalContext.current)) } ?: stringResource(R.string.vortex_loading), color = Color.White, fontSize = 20.sp)
     }
 }

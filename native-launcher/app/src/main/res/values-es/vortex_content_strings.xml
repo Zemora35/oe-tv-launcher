@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="vortex_film_fight_club_title">Fight Club</string>
+    <string name="vortex_film_fight_club_description">Un oficinista se une a un club de lucha clandestino que termina creciendo fuera de su control.</string>
+    <string name="vortex_film_forrest_gump_title">Forrest Gump</string>
+    <string name="vortex_film_forrest_gump_description">Forrest atraviesa momentos decisivos de la historia estadounidense sin renunciar al amor y la amistad.</string>
+    <string name="vortex_film_inception_title">Inception</string>
+    <string name="vortex_film_inception_description">Un experto en entrar en sueños acepta la misión de plantar una idea en la mente de otra persona.</string>
+    <string name="vortex_film_interstellar_title">Interstellar</string>
+    <string name="vortex_film_interstellar_description">Un grupo de exploradores viaja más allá del sistema solar para buscar un nuevo hogar para la humanidad.</string>
+    <string name="vortex_film_pulp_fiction_title">Pulp Fiction</string>
+    <string name="vortex_film_pulp_fiction_description">Las vidas de dos sicarios, un boxeador y otros habitantes de Los Ángeles se cruzan de forma imprevisible.</string>
+    <string name="vortex_film_dark_knight_title">The Dark Knight</string>
+    <string name="vortex_film_dark_knight_description">Batman se enfrenta al Joker, cuyos planes amenazan Gotham y ponen a prueba a sus protectores.</string>
+    <string name="vortex_film_godfather_title">The Godfather</string>
+    <string name="vortex_film_godfather_description">La familia Corleone afronta conflictos de poder y lealtad mientras Michael entra en su mundo criminal.</string>
+    <string name="vortex_film_lotr_title">The Lord of the Rings: The Return of the King</string>
+    <string name="vortex_film_lotr_description">Frodo y Sam se acercan al Monte del Destino mientras sus aliados libran la batalla final por la Tierra Media.</string>
+    <string name="vortex_film_matrix_title">The Matrix</string>
+    <string name="vortex_film_matrix_description">Un programador descubre que su mundo es una simulación y se une a la lucha por liberar a la humanidad.</string>
+    <string name="vortex_film_shawshank_title">The Shawshank Redemption</string>
+    <string name="vortex_film_shawshank_description">Dos presos construyen una amistad duradera y conservan la esperanza entre los muros de Shawshank.</string>
+    <string name="vortex_backdrop_unknown_title">Información del fondo</string>
+    <string name="vortex_backdrop_unknown_description">No se ha facilitado una sinopsis para esta imagen.</string>
+    <string name="vortex_watch_next_permission">Permitir datos de reproducción</string>
+    <string name="vortex_watch_next_permission_hint">Autoriza el acceso a los contenidos sin terminar compartidos por las aplicaciones.</string>
+    <string name="vortex_watch_next_refreshed">Lista de reproducción actualizada.</string>
+    <string name="vortex_watch_next_error">No se ha podido actualizar la lista.</string>
+    <plurals name="vortex_resume_minutes_left">
+        <item quantity="one">Queda %1$d minuto</item>
+        <item quantity="many">Quedan %1$d minutos</item>
+        <item quantity="other">Quedan %1$d minutos</item>
+    </plurals>
+</resources>

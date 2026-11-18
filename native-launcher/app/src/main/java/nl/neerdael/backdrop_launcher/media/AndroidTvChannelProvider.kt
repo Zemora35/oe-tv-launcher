@@ -34,6 +34,9 @@ internal class AndroidTvChannelProvider(private val context: Context) : TvChanne
         val fields = linkedMapOf(
             "id" to TvContract.PreviewPrograms._ID,
             "title" to TvContract.PreviewPrograms.COLUMN_TITLE,
+            "description" to TvContract.PreviewPrograms.COLUMN_SHORT_DESCRIPTION,
+            "duration" to TvContract.PreviewPrograms.COLUMN_DURATION_MILLIS,
+            "playbackPosition" to TvContract.PreviewPrograms.COLUMN_LAST_PLAYBACK_POSITION_MILLIS,
             "posterUri" to TvContract.PreviewPrograms.COLUMN_POSTER_ART_URI,
             "posterAspect" to TvContract.PreviewPrograms.COLUMN_POSTER_ART_ASPECT_RATIO,
             "thumbnailUri" to TvContract.PreviewPrograms.COLUMN_THUMBNAIL_URI,

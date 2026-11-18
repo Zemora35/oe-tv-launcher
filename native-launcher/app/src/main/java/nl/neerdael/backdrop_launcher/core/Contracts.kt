@@ -51,7 +51,7 @@ data class DeviceAuthorization(val deviceCode: String, val userCode: String, val
 }
 enum class AuthorizationResult { PENDING, APPROVED, SLOW_DOWN, DENIED, EXPIRED, INVALID, ALREADY_USED, CANCELLED }
 data class CatalogOption(val key: String, val title: String, val itemCount: Int = 0)
-data class Backdrop(val image: String, val title: String? = null)
+data class Backdrop(val image: String, val title: String? = null, val description: String? = null)
 data class TvChannel(val key: String, val name: String, val packageName: String, val appName: String)
 data class ChannelProgram(val item: ResumeItem, val aspect: Float) {
     fun tile() = AppTile(item.packageName.orEmpty(), item.title, item.image, item, aspect)
@@ -73,6 +73,7 @@ interface MediaAccess {
     fun nextBackdrop(): Backdrop
     fun chooseBundledBackdrop(asset: String): Backdrop
     fun watchNext(): List<ResumeItem>
+    fun recommendations(): List<ResumeItem> = emptyList()
     fun restoredWatchNext(): List<ResumeItem> = emptyList()
     fun prepareWatchNextImage(item: ResumeItem): ResumeItem = item
     fun selectWatchNext(item: ResumeItem) {}

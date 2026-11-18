@@ -1,0 +1,33 @@
+name: Vortex localization and build
+
+on:
+  pull_request:
+    paths: ['native-launcher/**', 'lib/l10n/**', '.github/workflows/vortex-checks.yml']
+  push:
+    branches: [main]
+    paths: ['native-launcher/**', 'lib/l10n/**', '.github/workflows/vortex-checks.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Install Android SDK
+        run: '"$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" ''platforms;android-36'' ''build-tools;35.0.0'''
+      - name: Verify translations and dock geometry
+        working-directory: native-launcher
+        run: ./gradlew :app:testBenchmarkDebugUnitTest --tests '*UiTextTest' --tests '*LocaleCatalogTest' --tests '*VortexGeometryTest' --tests '*CinemaPerformanceTest' --tests '*ContinueWatchingFeedTest' --tests '*ContinueWatchingTimeTest' --tests '*AppCatalogTest' --tests '*AppGridNavigationTest' --tests '*FeaturedFeedTest' --tests '*TvChannelFeedTest' --tests '*FeaturedRotationTest' --tests '*QuickLaunchTest' --tests '*NativeMediaTest.candidateDedupAndTmdbPathValidation' --tests '*NativeMediaTest.feedProgressFilteringAndIntentPreserveLegacyFields' --console plain
+      - name: Lint and build Vortex
+        working-directory: native-launcher
+        run: ./gradlew :app:lintVortexRelease :app:assembleVortexRelease --console plain

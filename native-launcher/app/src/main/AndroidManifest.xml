@@ -12,12 +12,13 @@
     <!-- Home must preserve hidden memberships and reconcile installed packages without launch activities. -->
     <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" tools:ignore="QueryAllPackagesPermission" />
     <queries>
+        <intent><action android:name="android.intent.action.MAIN" /><category android:name="android.intent.category.HOME" /></intent>
         <intent><action android:name="android.intent.action.MAIN" /><category android:name="android.intent.category.LAUNCHER" /></intent>
         <intent><action android:name="android.intent.action.MAIN" /><category android:name="android.intent.category.LEANBACK_LAUNCHER" /></intent>
     </queries>
     <application android:label="@string/backdrop_app_name" android:allowBackup="false"
         android:banner="@drawable/backdrop_tv_banner" android:icon="@mipmap/ic_launcher"
-        android:theme="@style/NativeTheme" android:usesCleartextTraffic="true">
+        android:theme="@style/NativeTheme" android:usesCleartextTraffic="true" android:supportsRtl="true">
         <profileable android:shell="true" />
         <activity android:name=".MainActivity" android:exported="true" android:launchMode="singleTask"
             android:screenOrientation="landscape" android:windowSoftInputMode="adjustResize">

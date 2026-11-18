@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="vortex_film_fight_club_title">Fight Club</string>
+    <string name="vortex_film_fight_club_description">An office worker joins an underground fight club whose influence soon grows beyond his control.</string>
+    <string name="vortex_film_forrest_gump_title">Forrest Gump</string>
+    <string name="vortex_film_forrest_gump_description">Forrest moves through remarkable moments of American history while holding on to friendship and love.</string>
+    <string name="vortex_film_inception_title">Inception</string>
+    <string name="vortex_film_inception_description">A specialist in entering dreams takes on a mission to plant an idea deep inside another mind.</string>
+    <string name="vortex_film_interstellar_title">Interstellar</string>
+    <string name="vortex_film_interstellar_description">As Earth becomes uninhabitable, explorers travel beyond the solar system to seek a future for humanity.</string>
+    <string name="vortex_film_pulp_fiction_title">Pulp Fiction</string>
+    <string name="vortex_film_pulp_fiction_description">The lives of hitmen, a boxer and other Los Angeles residents collide through an unpredictable chain of events.</string>
+    <string name="vortex_film_dark_knight_title">The Dark Knight</string>
+    <string name="vortex_film_dark_knight_description">Batman faces the Joker, whose plans threaten Gotham and test the choices of its protectors.</string>
+    <string name="vortex_film_godfather_title">The Godfather</string>
+    <string name="vortex_film_godfather_description">The Corleone family struggles with loyalty, power and succession as Michael is drawn into its criminal world.</string>
+    <string name="vortex_film_lotr_title">The Lord of the Rings: The Return of the King</string>
+    <string name="vortex_film_lotr_description">Frodo and Sam approach Mount Doom while their allies unite for the final battle for Middle-earth.</string>
+    <string name="vortex_film_matrix_title">The Matrix</string>
+    <string name="vortex_film_matrix_description">A programmer discovers that his familiar world is a simulation and joins a struggle to free humanity.</string>
+    <string name="vortex_film_shawshank_title">The Shawshank Redemption</string>
+    <string name="vortex_film_shawshank_description">Two prisoners build a lasting friendship and preserve hope through years behind Shawshank’s walls.</string>
+    <string name="vortex_backdrop_unknown_title">Backdrop information</string>
+    <string name="vortex_backdrop_unknown_description">No synopsis was supplied for this image.</string>
+    <string name="vortex_watch_next_permission">Allow viewing-data access</string>
+    <string name="vortex_watch_next_permission_hint">Grant TV listings permission to read shared unfinished programmes.</string>
+    <string name="vortex_watch_next_refreshed">Continue Watching refreshed.</string>
+    <string name="vortex_watch_next_error">Unable to refresh Continue Watching.</string>
+    <plurals name="vortex_resume_minutes_left">
+        <item quantity="one">%1$d minute left</item>
+        <item quantity="other">%1$d minutes left</item>
+    </plurals>
+</resources>

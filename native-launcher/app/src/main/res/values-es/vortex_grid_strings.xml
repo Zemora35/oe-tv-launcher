@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="vortex_quick_launch">Inicio rápido</string>
+    <string name="vortex_quick_launch_edit">Editar</string>
+    <string name="vortex_quick_launch_done">Listo</string>
+    <string name="vortex_quick_launch_empty">Selecciona Editar para añadir tus aplicaciones favoritas.</string>
+    <string name="vortex_quick_launch_choose">OK: seleccionar/quitar · %1$d/%2$d elegidas · El orden de selección define la fila · Listo o Atrás guarda</string>
+    <string name="vortex_quick_launch_selected">Favorita seleccionada</string>
+    <string name="vortex_quick_launch_unselected">Sin seleccionar</string>
+    <string name="vortex_quick_launch_add">Añadir a Inicio rápido</string>
+    <string name="vortex_quick_launch_remove">Quitar de Inicio rápido</string>
+    <string name="vortex_quick_launch_limit">Elige hasta %1$d aplicaciones. Quita una antes de añadir otra.</string>
+    <string name="vortex_quick_launch_save_error">No se pudieron guardar los favoritos. Inténtalo de nuevo.</string>
+    <string name="vortex_grid_all_subtitle">Explora y abre las aplicaciones instaladas en O.E tv.</string>
+    <string name="vortex_grid_history_subtitle">Aplicaciones abiertas desde O.E tv y su última visita.</string>
+    <string name="vortex_grid_search">Buscar aplicaciones</string>
+    <string name="vortex_grid_history_search">Buscar en el historial</string>
+    <string name="vortex_grid_filter">Filtro: %1$s</string>
+    <string name="vortex_grid_sort">Orden: %1$s</string>
+    <string name="vortex_grid_type_all">Todas</string>
+    <string name="vortex_grid_type_tv">Apps de TV</string>
+    <string name="vortex_grid_type_android">Otras apps</string>
+    <string name="vortex_grid_category_all">Todas</string>
+    <string name="vortex_grid_category_streaming">Streaming</string>
+    <string name="vortex_grid_category_media">Multimedia</string>
+    <string name="vortex_grid_category_tools">Herramientas</string>
+    <string name="vortex_grid_category_system">Sistema</string>
+    <string name="vortex_grid_sort_az">A–Z</string>
+    <string name="vortex_grid_sort_za">Z–A</string>
+    <string name="vortex_grid_sort_recent">Última visita</string>
+    <string name="vortex_grid_no_results">Ninguna aplicación coincide con la búsqueda o los filtros.</string>
+    <string name="vortex_grid_history_empty">Aquí aparecerán las aplicaciones abiertas desde O.E tv.</string>
+    <string name="vortex_grid_time_unknown">Fecha no registrada</string>
+    <string name="vortex_grid_last_visit">Última visita: %1$s</string>
+    <string name="vortex_grid_close">Volver</string>
+    <string name="vortex_grid_position">%1$d / %2$d</string>
+    <string name="vortex_grid_clear_search">Borrar búsqueda</string>
+    <string name="vortex_grid_choose_filter">Filtrar aplicaciones</string>
+    <string name="vortex_grid_choose_sort">Ordenar aplicaciones</string>
+    <string name="vortex_grid_open_app">Abrir %1$s</string>
+    <string name="vortex_grid_app_actions">Opciones de la aplicación</string>
+</resources>

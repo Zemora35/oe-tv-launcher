@@ -56,9 +56,11 @@ class ArtworkDecoder(private val context: Context) {
 
     fun decode(path: String, width: Int, height: Int, epoch: Int): Bitmap? {
         if (epoch != generation.get()) throw IOException("Artwork request cancelled")
-        if (path.startsWith("package:")) {
-            val name = path.removePrefix("package:")
-            val drawable = context.packageManager.getApplicationBanner(name) ?: context.packageManager.getApplicationIcon(name)
+        if (path.startsWith("package:") || path.startsWith("package-icon:")) {
+            val iconOnly = path.startsWith("package-icon:")
+            val name = path.substringAfter(':')
+            val drawable = if (iconOnly) context.packageManager.getApplicationIcon(name)
+                else context.packageManager.getApplicationBanner(name) ?: context.packageManager.getApplicationIcon(name)
             val size = decodeSize(drawable.intrinsicWidth.takeIf { it > 0 } ?: width, drawable.intrinsicHeight.takeIf { it > 0 } ?: height,
                 width.coerceAtMost(480), height.coerceAtMost(270))
             val bitmap = Bitmap.createBitmap(size.width, size.height, Bitmap.Config.ARGB_8888)

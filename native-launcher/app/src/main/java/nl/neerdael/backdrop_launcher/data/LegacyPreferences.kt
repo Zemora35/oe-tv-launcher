@@ -21,6 +21,7 @@ class LegacyPreferences(context: Context) : PreferenceAccess {
     private fun store(key: String) = if (key.startsWith("native.")) native else legacy
     private fun diskKey(key: String) = if (key.startsWith("native.")) key else "flutter.$key"
     private fun raw(key: String): Any? = store(key).all[diskKey(key)]
+    fun contains(key: String): Boolean = store(key).contains(diskKey(key))
     override fun bool(key: String, default: Boolean) = raw(key) as? Boolean ?: default
     override fun string(key: String, default: String) = raw(key) as? String ?: default
     override fun long(key: String, default: Long): Long = when (val value = raw(key)) {

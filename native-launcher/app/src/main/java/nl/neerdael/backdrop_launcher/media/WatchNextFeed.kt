@@ -64,7 +64,7 @@ internal class WatchNextFeed(private val prefs: PreferenceAccess, private val pr
         try {
             val queried = provider.query()
             ensureMediaActive()
-            raw = queried.filter { !it.textOrNull("title").isNullOrBlank() }.take(50)
+            raw = queried.filter { !it.textOrNull("title").isNullOrBlank() && isUnfinished(it) }.take(50)
             failed.clear()
             val retained = raw.flatMap(::uris).toSet()
             images.keys.retainAll(retained)
@@ -110,12 +110,14 @@ internal class WatchNextFeed(private val prefs: PreferenceAccess, private val pr
         val excluded = prefs.strings("watch_next_excluded_packages").toSet()
         val hideWithoutImages = prefs.bool("watch_next_hide_programs_without_images")
         val maxItems = prefs.int("watch_next_max_items").let { if (it > 0) it.coerceAtMost(50) else 50 }
-        return raw.filter { it.textOrNull("packageName") !in excluded &&
+        return raw.filter { isUnfinished(it) && it.textOrNull("packageName") !in excluded &&
             (!hideWithoutImages || uris(it).any { uri -> uri !in failed }) }.take(maxItems)
     }
     private fun resume(row: JSONObject): ResumeItem = ResumeItem(row.optString("title"), row.textOrNull("description") ?: "",
         uris(row).firstNotNullOfOrNull { images[it] } ?: uris(row).firstOrNull { it !in failed },
-        progress(row), row.textOrNull("intentUri"), row.textOrNull("packageName"), row.optLong("id"), row.textOrNull("contentId"))
+        progress(row), row.textOrNull("intentUri"), row.textOrNull("packageName"), row.optLong("id"), row.textOrNull("contentId"),
+        if (row.isNull("duration")) null else row.optLong("duration"),
+        if (row.isNull("playbackPosition")) null else row.optLong("playbackPosition"))
 
     private fun prepare(row: JSONObject) {
         for (uri in uris(row)) {
@@ -165,6 +167,19 @@ internal class WatchNextFeed(private val prefs: PreferenceAccess, private val pr
         const val NAMESPACE = "continue_watching"
         const val SELECTED_KEY = "native.watch_next_selected_id"
         const val MAX_IMAGE_BYTES = 4 * 1024 * 1024
+        /** Public resume entries only. Recommendations/watchlists are not evidence of viewing. */
+        fun isUnfinished(row: JSONObject): Boolean {
+            if (row.optInt("browsable", 1) == 0) return false
+            val type = if (row.isNull("watchNextType")) null else row.optInt("watchNextType", -1)
+            if (type != null && type != 0) return false // WATCH_NEXT_TYPE_CONTINUE
+            val duration = row.optLong("duration", 0)
+            val position = row.optLong("playbackPosition", 0)
+            if (duration > 0 && !row.isNull("playbackPosition") && (position <= 0 || position >= duration)) return false
+            if (!row.isNull("progressPercent") && row.optInt("progressPercent") >= 100) return false
+            // Some publishers label generic links CONTINUE but supply no playback at all.
+            // A type flag alone must not create fictional watching history.
+            return position > 0 || row.optInt("progressPercent") in 1..99
+        }
         fun progress(row: JSONObject): Int {
             if (!row.isNull("playbackPosition")) {
                 val duration = row.optLong("duration")

@@ -85,8 +85,8 @@ internal class TvChannelFeed(private val provider: TvChannelProvider, private va
     private fun program(row: JSONObject): ChannelProgram {
         val candidates = art(row)
         val chosen = candidates.firstOrNull { !cooling(it.uri) } ?: candidates.firstOrNull()
-        return ChannelProgram(ResumeItem(row.optString("title"), "", chosen?.let { cached(it.uri) }, 0, row.textOrNull("intentUri"),
-            row.textOrNull("packageName"), row.optLong("id"), row.textOrNull("contentId")), chosen?.aspect ?: HOME_TILE_ASPECT)
+        return ChannelProgram(ResumeItem(row.optString("title"), row.textOrNull("description").orEmpty(), chosen?.let { cached(it.uri) }, 0, row.textOrNull("intentUri"),
+            row.textOrNull("packageName"), row.optLong("id"), row.textOrNull("contentId"), continuation = false), chosen?.aspect ?: HOME_TILE_ASPECT)
     }
 
     /** True when the tile's art changed. The first art that loads wins, so a poster beats a still. */

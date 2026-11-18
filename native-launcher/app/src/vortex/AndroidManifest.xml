@@ -1,0 +1,5 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <application android:label="@string/oe_tv_app_name" android:localeConfig="@xml/vortex_locales" tools:replace="android:label">
+        <service android:name=".ClockScreensaverService" android:label="@string/vortex_clock_name" tools:replace="android:label" />
+    </application>
+</manifest>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="vortex_featured_next">Next featured programme</string>
+    <string name="vortex_synopsis_unavailable">A synopsis in your language is unavailable. Open the programme for details.</string>
+    <string name="vortex_synopsis_frieren">After defeating the Demon King, the long-lived elf mage Frieren begins a new journey to understand the bonds she formed with her companions.</string>
+    <string name="vortex_content_google_tv_open">Open Google TV</string>
+    <string name="vortex_content_google_tv_error">Google TV could not be opened.</string>
+    <string name="vortex_content_recommendation_description">Recommended by %1$s. Open it to see the programme and viewing options.</string>
+    <string name="vortex_content_platform">Platform: %1$s</string>
+    <string name="vortex_content_platform_unknown">Platform not verified</string>
+    <string name="vortex_content_watch_options">Where to watch</string>
+    <string name="vortex_content_artwork_note">This is a featured artwork. Viewing options open in your browser; availability and subscriptions depend on the provider and region.</string>
+    <string name="vortex_content_no_browser">Install a TV browser to open viewing options.</string>
+    <string name="vortex_content_youtube_open">Open YouTube</string>
+    <string name="vortex_content_youtube_hint">No shared unfinished items yet. Some TVs do not share YouTube playback history here; check History inside YouTube.</string>
+</resources>

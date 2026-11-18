@@ -1,4 +1,27 @@
-# Contributing to ArcLauncher
+# Contributing to Vortex TV
+
+The production application is Kotlin/Compose in `native-launcher/`. Use Java 17+
+and Android SDK 36; Flutter is not required for Vortex. Read the
+[Code of Conduct](CODE_OF_CONDUCT.md) before opening an issue or pull request.
+
+For translations, follow [docs/localization.md](docs/localization.md). Keep an
+English fallback, preserve positional format arguments/plurals, and test both
+LTR and RTL. Do not use translated labels as identifiers or translate package
+names, intents, user row names or provider content.
+
+Before a PR, run the Vortex locale/unit checks and `:app:lintVortexRelease`.
+Interface changes also need D-pad checks and previews at 1080p/720p, long text
+and at least one RTL locale. Report the TV/Android version for device bugs and
+keep credentials/signing material out of commits. Preserve upstream copyright
+notices and GPL-3.0-or-later licensing.
+
+The Vortex checks workflow only validates/builds. Releases remain a separate
+maintainer action after physical-device testing and review.
+
+The historical guide below describes the upstream Flutter project, retained as
+background. It is not the native Vortex build procedure.
+
+## Historical upstream development guide
 
 Thank you for your interest in contributing to ArcLauncher! We welcome contributions from everyone.
 

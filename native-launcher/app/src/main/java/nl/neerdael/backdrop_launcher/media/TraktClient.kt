@@ -15,6 +15,7 @@ import java.util.concurrent.ExecutionException
 internal data class Candidate(val title: String, val tmdbId: Int, val type: String) {
     val key: String get() = "${type}_$tmdbId"
 }
+internal data class BackdropDetails(val imageUrl: String, val title: String, val description: String?)
 
 internal class TraktClient(private val prefs: PreferenceAccess, private val clientId: String,
     private val tmdbApiKey: String, private val redirectUri: String,
@@ -142,13 +143,18 @@ internal class TraktClient(private val prefs: PreferenceAccess, private val clie
         return candidates.values.toList()
     }
 
-    fun backdrop(candidate: Candidate): String? {
-        val response = transport.execute(MediaRequest("https://api.themoviedb.org/3/${candidate.type}/${candidate.tmdbId}?api_key=${encode(tmdbApiKey)}"))
+    fun backdrop(candidate: Candidate): String? = backdropDetails(candidate)?.imageUrl
+
+    fun backdropDetails(candidate: Candidate, language: String = "en"): BackdropDetails? {
+        val response = transport.execute(MediaRequest("https://api.themoviedb.org/3/${candidate.type}/${candidate.tmdbId}?api_key=${encode(tmdbApiKey)}&language=${encode(language)}"))
         if (response.status == 404) return null
         checkStatus(response, "Unable to load backdrop")
-        val path = responseObject(response).textOrNull("backdrop_path") ?: return null
+        val body = responseObject(response)
+        val path = body.textOrNull("backdrop_path") ?: return null
         if (!Regex("^/[A-Za-z0-9_.-]+$").matches(path)) return null
-        return "https://image.tmdb.org/t/p/w1280$path"
+        return BackdropDetails("https://image.tmdb.org/t/p/w1280$path",
+            body.textOrNull(if (candidate.type == "tv") "name" else "title") ?: candidate.title,
+            body.textOrNull("overview"))
     }
 
     private fun token(): JSONObject = try { JSONObject(prefs.string("trakt_token", "{}")) } catch (_: Exception) { JSONObject() }

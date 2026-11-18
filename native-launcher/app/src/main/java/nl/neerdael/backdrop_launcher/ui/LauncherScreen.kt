@@ -79,7 +79,7 @@ private class HomeRowPivot(private val start: Float) : BringIntoViewSpec {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun LauncherScreen(home: HomeData, library: LibrarySnapshot, prefs: PreferenceAccess, media: MediaAccess,
+fun ClassicLauncherScreen(home: HomeData, library: LibrarySnapshot, prefs: PreferenceAccess, media: MediaAccess,
                    updates: UpdateAccess, actions: UiActions, selection: HomeSelection,
                    artwork: ComposeArtwork, active: Boolean, artworkRevision: Int) {
     val scene = home.scene
@@ -98,7 +98,7 @@ fun LauncherScreen(home: HomeData, library: LibrarySnapshot, prefs: PreferenceAc
         onDispose { unsubscribe() }
     }
     val style = remember(prefs, preferenceVersion) { HomeAppearance.read(prefs) }
-    val font = remember(context) { FontFamily(Font("fonts/Inter.ttf", context.assets)) }
+    val font = FontFamily.SansSerif
     val density = LocalDensity.current
     val screenHeight = with(density) { LocalWindowInfo.current.containerSize.height.toDp() }
     val rowLayout = style.rows

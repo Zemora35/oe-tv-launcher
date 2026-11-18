@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="vortex_featured_next">البرنامج المميز التالي</string>
+    <string name="vortex_synopsis_unavailable">لا يتوفر ملخص بلغتك. افتح البرنامج للاطلاع على التفاصيل.</string>
+    <string name="vortex_synopsis_frieren">بعد هزيمة ملك الشياطين، تنطلق الساحرة الجنيّة المعمّرة فريرن في رحلة جديدة لفهم الروابط التي جمعتها برفاقها.</string>
+    <string name="vortex_content_google_tv_open">فتح Google TV</string>
+    <string name="vortex_content_google_tv_error">تعذر فتح Google TV.</string>
+    <string name="vortex_content_recommendation_description">مقترح من %1$s. افتحه لعرض البرنامج وخيارات المشاهدة.</string>
+    <string name="vortex_content_platform">المنصة: %1$s</string>
+    <string name="vortex_content_platform_unknown">المنصة غير مؤكدة</string>
+    <string name="vortex_content_watch_options">أين تشاهد</string>
+    <string name="vortex_content_artwork_note">هذه صورة مميزة. تفتح خيارات المشاهدة في المتصفح؛ ويعتمد التوفر والاشتراك على المزود والمنطقة.</string>
+    <string name="vortex_content_no_browser">ثبّت متصفحًا للتلفزيون لفتح خيارات المشاهدة.</string>
+    <string name="vortex_content_youtube_open">فتح YouTube</string>
+    <string name="vortex_content_youtube_hint">لا يوجد محتوى غير مكتمل تمت مشاركته. لا تشارك بعض أجهزة التلفزيون سجل YouTube هنا؛ راجع السجل داخل YouTube.</string>
+</resources>

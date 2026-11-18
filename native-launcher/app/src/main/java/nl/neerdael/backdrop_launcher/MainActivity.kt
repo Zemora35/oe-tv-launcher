@@ -51,6 +51,7 @@ class MainActivity : ComponentActivity(), UiActions {
     private var artworkRevision by mutableIntStateOf(0)
     private var backdrop: Backdrop? = null
     private var watchNext = emptyList<ResumeItem>()
+    private var recommendations = emptyList<ResumeItem>()
     private var channelKeys = emptySet<String>()
     private var channelPrograms = emptyMap<String, List<ChannelProgram>>()
     private var packageDirty = true
@@ -110,7 +111,10 @@ class MainActivity : ComponentActivity(), UiActions {
         @Suppress("DEPRECATION")
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN or
             View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-        prefs = LegacyPreferences(applicationContext)
+        prefs = LegacyPreferences(applicationContext).also {
+            if (BuildConfig.FLAVOR == "vortex" && !it.contains("show_watch_next_section"))
+                it.putBool("show_watch_next_section", true)
+        }
         library = LegacyLibrary(applicationContext, prefs)
         media = NativeMedia(applicationContext, prefs, BuildConfig.TRAKT_CLIENT_ID, BuildConfig.TMDB_API_KEY, BuildConfig.TRAKT_REDIRECT_URI)
         updater = NativeUpdater(applicationContext)
@@ -238,7 +242,9 @@ class MainActivity : ComponentActivity(), UiActions {
             prefs.double("app_icon_background_opacity", .1).toFloat().coerceIn(0f, 1f), false,
             prefs.bool("show_app_names_below_icons"))
         selection.reconcile(scene)
-        home = HomeData(scene, if (media.checkWatchNextPermission()) "" else "Watch Next permission is available in Settings")
+        val watchPermission = media.checkWatchNextPermission()
+        home = HomeData(scene, if (watchPermission) "" else "Watch Next permission is available in Settings",
+            backdrop?.title, backdrop?.description, watchPermission, recommendations)
     }
 
     private fun scheduleProviderRefresh() {
@@ -293,12 +299,12 @@ class MainActivity : ComponentActivity(), UiActions {
     private fun scheduleChannelRefresh() {
         handler.removeCallbacks(channelRefresh)
         // Apps publish programs one at a time, so wait for a batch to settle.
-        if (resumed && channelKeys.isNotEmpty()) handler.postDelayed(channelRefresh, 1000)
+        if (resumed) handler.postDelayed(channelRefresh, 1000)
     }
 
     /** Has its own worker: posters can take a while and must not hold up backdrops or Continue Watching. */
     private fun refreshChannels() {
-        if (!resumed || !initialized || (channelKeys.isEmpty() && channelPrograms.isEmpty())) return
+        if (!resumed || !initialized) return
         channelTask?.cancel(true)
         val request = generation
         val keys = channelKeys
@@ -309,6 +315,14 @@ class MainActivity : ComponentActivity(), UiActions {
         }
         channelTask = channelWorker.submit {
             try {
+                val featured = media.recommendations()
+                handler.post {
+                    if (resumed && request == generation) {
+                        recommendations = featured
+                        render()
+                        scheduleProviderRefresh()
+                    }
+                }
                 show(media.channelPrograms(keys), replace = true)
                 keys.forEach { key -> media.prepareChannelArt(key) { show(mapOf(key to it)) } }
             } catch (_: Exception) {
@@ -436,7 +450,8 @@ class MainActivity : ComponentActivity(), UiActions {
     }
     private fun open(intent: Intent, notify: Boolean = true): Boolean = try { startActivity(intent); true }
         catch (_: Exception) { if (notify) message("Application could not be opened"); false }
-    override fun message(text: String) { handler.post { if (!isDestroyed) Toast.makeText(this, text, Toast.LENGTH_SHORT).show() } }
+    override fun message(text: String) { handler.post { if (!isDestroyed) Toast.makeText(this,
+        uiText(text, nativeUiLanguage(this)), Toast.LENGTH_SHORT).show() } }
     override fun onDestroy() {
         unsubscribe?.invoke()
         unregisterReceiver(packages)

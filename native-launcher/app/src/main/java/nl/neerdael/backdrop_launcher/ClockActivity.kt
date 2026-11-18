@@ -15,6 +15,7 @@ import android.widget.TextView
 import nl.neerdael.backdrop_launcher.data.LegacyPreferences
 import nl.neerdael.backdrop_launcher.core.ArtworkDecoder
 import nl.neerdael.backdrop_launcher.core.needsSecondTicks
+import nl.neerdael.backdrop_launcher.core.launcherLocale
 import java.util.concurrent.Executors
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -33,8 +34,8 @@ class ClockActivity : Activity() {
         override fun run() {
             val prefs = LegacyPreferences(this@ClockActivity)
             fun format(key: String, fallback: String): String = try {
-                SimpleDateFormat(prefs.string(key, fallback), Locale.getDefault()).format(Date())
-            } catch (_: IllegalArgumentException) { SimpleDateFormat(fallback, Locale.getDefault()).format(Date()) }
+                SimpleDateFormat(prefs.string(key, fallback), launcherLocale()).format(Date())
+            } catch (_: IllegalArgumentException) { SimpleDateFormat(fallback, launcherLocale()).format(Date()) }
             time.text = format("time_format", "H:mm")
             date.text = format("date_format", "EEEE d")
             val interval = if (needsSecondTicks(prefs.string("time_format", "H:mm"), prefs.string("date_format", "EEEE d"))) 1000L else 60_000L

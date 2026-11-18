@@ -1,3 +1,111 @@
+# O.E tv
+
+A cinematic, remote-first Android TV / Google TV launcher built on
+[Backdrop Launcher](https://github.com/johnneerdael/Backdrop-Launcher), with a
+centred spiral app dock and an editable six-app **Quick Launch** row.
+
+[Türkçe](README.tr.md) · [Quick Launch](docs/development/quick-launch.md) · [Localization](docs/localization.md) · [GPL-3.0-or-later](LICENSE)
+
+All Apps and History use a fullscreen cinematic grid with search, categories,
+TV/other-app filters and sorting. History shows each app's last successful
+opening through O.E tv, formatted in the app locale and TV time zone.
+[Application grid and history](docs/development/apps-grid.md).
+
+Personal edition by Oğuzhan Eklidağ. The home header displays **O.E tv** with
+a static handwritten signature beneath it. The Android app label uses the same
+name; the existing package identity and Vortex build variant are retained.
+
+The selected app stays at the centre of a lightweight spiral dock and grows to
+1.35× size. Installed package icons sit inside glossy rounded tiles. Custom app
+rows, Watch Next content, cached backdrops and the original settings remain.
+
+Featured programmes rotate every 30 seconds, keeping artwork, synopsis, platform
+and playback link together. Rotation pauses on focused hero actions and open
+panels. Wallpaper-only titles offer a viewing-options lookup. Localized summaries
+are limited; unknown English synopses show an explicit localized fallback rather
+than claiming automatic translation. See [featured content](docs/development/featured-rotation.md).
+
+Quick Launch replaces Continue Watching in the cinematic home's bottom-left
+area. Choose up to six installed apps with Edit or long OK; selection order is
+row order, and Done/Back saves. Google TV switching remains available. The
+classic layout retains the provider-based Watch Next infrastructure. Google TV's
+private YouTube continuation cards are not mirrored; this edition adds no
+playback collector. See [playback-source limits](docs/development/featured-playback.md).
+
+![Vortex TV cinematic home](docs/assets/vortex/home-en.png)
+
+Compose previews and RTL remote tests cover the supported home locales.
+
+## Languages and accessibility
+
+- Follows the TV/app language; Turkish is not forced.
+- Cinematic-home translations: English, Turkish, Spanish, Vietnamese and Arabic.
+- Missing translations and other device languages fall back to English per key.
+- RTL layouts mirror the spiral and remote directions while keeping the centre fixed.
+- System font fallback supports Arabic, CJK and other Unicode scripts.
+- Android 13+ per-app language settings, debug pseudolocales and reduced motion.
+
+Legacy settings translations are partial outside English/Turkish. Contributions
+are welcome; adding a language does not require modifying Kotlin. See the
+[translation scope, resource format and tests](docs/localization.md).
+
+Hero controls stay above the spiral without cutting tile outlines. The
+[rendering budget](docs/development/vortex-performance.md) covers the 1080p
+artwork cap on 4K displays, bounded image work and interruptible dock animation.
+
+## Build and test
+
+Open `native-launcher/` in Android Studio. Use Java 17+ and Android SDK 36;
+Flutter is not needed for the native APK.
+
+```sh
+cd native-launcher
+./gradlew :app:assembleVortexRelease :app:lintVortexRelease
+./gradlew :app:testBenchmarkDebugUnitTest \
+  --tests '*UiTextTest' --tests '*LocaleCatalogTest' --tests '*VortexGeometryTest' --tests '*CinemaPerformanceTest' \
+  --tests '*ContinueWatchingFeedTest' --tests '*ContinueWatchingTimeTest'
+./gradlew :app:testBenchmarkDebugUnitTest \
+  --tests '*QuickLaunchTest' --tests '*FeaturedRotationTest' \
+  --tests '*AppCatalogTest' --tests '*AppGridNavigationTest'
+```
+
+The Home-capable package is `nl.neerdael.backdrop_launcher.vortex` and can coexist
+with the upstream launcher. Output: `app/build/outputs/apk/vortex/release/`.
+Without explicitly provided signing environment variables it uses a development
+key. The upstream self-updater is disabled for this fork. Installation does not
+automatically change the television's default Home app.
+
+Use the `benchmarkDebug` variant and an explicitly selected Android TV emulator
+for `QuickLaunchUiTest`, `InternationalHomeTest` and `VortexRemoteTest`. The latest
+local validation passed 54 focused JVM tests and 29 Android UI checks. A physical
+TCL TV check verified favourite persistence, app launch and returning focus;
+see [Quick Launch validation](docs/development/quick-launch.md). Test apps, local screenshots,
+APK outputs and `.tv-test/` are ignored by Git. The
+[Vortex CI workflow](.github/workflows/vortex-checks.yml) validates translations,
+lint and builds; it does not publish releases. Upstream publishing workflows are
+repository-gated. Physical-TV testing and native-speaker review remain release
+acceptance steps; emulator checks are not a TCL frame-rate guarantee.
+
+## Contribute and release
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md) and [docs/localization.md](docs/localization.md).
+Keep package/content identities independent of translated labels. Preserve
+positional format arguments and plural forms; run catalog and RTL checks.
+Keep signing keys/API credentials outside the repository. Publish a release
+only after reviewing device behaviour and the [current validation report](docs/development/quick-launch.md).
+
+## Credits and license
+
+Based on Backdrop Launcher by John Neerdael, building on Arc Launcher by Badis
+Meddouri, LTvLauncher by LeanBitLab and FLauncher by Étienne Fesser and its
+contributors. Existing copyright notices, [CREDITS.md](CREDITS.md) and the
+[GNU GPL v3 or later](LICENSE) are retained. Third-party app logos and programme
+artwork remain their owners' property; review asset redistribution rights for
+your releases. This fork does not claim ownership of those assets.
+
+<details>
+<summary>Upstream Backdrop Launcher information</summary>
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/assets/brand/readme-dark.png">
   <source media="(prefers-color-scheme: light)" srcset="docs/assets/brand/readme-light.png">
@@ -79,3 +187,5 @@ Backdrop Launcher is maintained by **John Neerdael**, building on [Arc Launcher]
 Media metadata and online backdrops come from [TMDB](https://www.themoviedb.org/). This product uses the TMDB API but is not endorsed or certified by TMDB. [Trakt](https://trakt.tv/) supplies optional catalogue selections. Third-party app logos and programme artwork remain the property of their respective owners.
 
 Released under the [GNU GPL v3 or later](LICENSE). See [credits and bundled font licences](CREDITS.md).
+
+</details>
