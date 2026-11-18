@@ -25,9 +25,19 @@ jobs:
           java-version: '17'
       - name: Install Android SDK
         run: '"$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" ''platforms;android-36'' ''build-tools;35.0.0'''
-      - name: Verify translations and dock geometry
+      - name: Verify catalogues, translations and navigation
         working-directory: native-launcher
-        run: ./gradlew :app:testBenchmarkDebugUnitTest --tests '*UiTextTest' --tests '*LocaleCatalogTest' --tests '*VortexGeometryTest' --tests '*CinemaPerformanceTest' --tests '*ContinueWatchingFeedTest' --tests '*ContinueWatchingTimeTest' --tests '*AppCatalogTest' --tests '*AppGridNavigationTest' --tests '*FeaturedFeedTest' --tests '*TvChannelFeedTest' --tests '*FeaturedRotationTest' --tests '*QuickLaunchTest' --tests '*NativeMediaTest.candidateDedupAndTmdbPathValidation' --tests '*NativeMediaTest.feedProgressFilteringAndIntentPreserveLegacyFields' --console plain
+        run: >-
+          ./gradlew :app:testBenchmarkDebugUnitTest
+          --tests '*UiTextTest' --tests '*LocaleCatalogTest'
+          --tests '*VortexGeometryTest' --tests '*CinemaPerformanceTest'
+          --tests '*ContinueWatchingFeedTest' --tests '*ContinueWatchingTimeTest'
+          --tests '*AppCatalogTest' --tests '*AppGridNavigationTest'
+          --tests '*FeaturedFeedTest' --tests '*TvChannelFeedTest'
+          --tests '*FeaturedRotationTest' --tests '*QuickLaunchTest' --tests '*DiscoverCatalogTest'
+          --tests '*NativeMediaTest.candidateDedupAndTmdbPathValidation'
+          --tests '*NativeMediaTest.feedProgressFilteringAndIntentPreserveLegacyFields'
+          --console plain
       - name: Lint and build Vortex
         working-directory: native-launcher
         run: ./gradlew :app:lintVortexRelease :app:assembleVortexRelease --console plain

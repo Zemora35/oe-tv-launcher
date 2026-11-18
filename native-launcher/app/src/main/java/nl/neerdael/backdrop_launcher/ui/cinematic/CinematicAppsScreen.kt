@@ -8,6 +8,8 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.focusGroup
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.gestures.BringIntoViewSpec
 import androidx.compose.foundation.gestures.LocalBringIntoViewSpec
@@ -16,6 +18,9 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
@@ -61,6 +66,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.Job
 import nl.neerdael.backdrop_launcher.R
 import nl.neerdael.backdrop_launcher.core.AppTile
+import nl.neerdael.backdrop_launcher.core.ResumeItem
 import nl.neerdael.backdrop_launcher.ui.ComposeArtwork
 
 private enum class GridChoice { FILTER, SORT }
@@ -73,11 +79,40 @@ private object GridViewport : BringIntoViewSpec {
 
 /** Fullscreen presentation; no inventory queries, disk writes or image work in key handlers. */
 @Composable
-@OptIn(ExperimentalFoundationApi::class)
 internal fun CinematicAppsScreen(entries: List<AppCatalogEntry>, history: Boolean, backdrop: String,
     onClose: () -> Unit, onLaunch: (String) -> Unit, onHold: (String) -> Unit, onTab: (HomeTab) -> Unit,
     loader: ComposeArtwork? = null, active: Boolean = true, canRequestFocus: Boolean = true,
     revision: Int = 0, quickSelection: List<String>? = null, status: @Composable () -> Unit = {}) {
+    CinematicCatalogScreen(entries, history, backdrop, onClose, onLaunch, onHold, onTab,
+        loader, active, canRequestFocus, revision, quickSelection, null, false, status)
+}
+
+@Composable
+internal fun CinematicDiscoverScreen(programmes: List<ResumeItem>, saved: Set<String>, backdrop: String,
+    onClose: () -> Unit, onOpen: (ResumeItem) -> Unit, onSave: (ResumeItem) -> Unit, onTab: (HomeTab) -> Unit,
+    loader: ComposeArtwork? = null, active: Boolean = true, revision: Int = 0, status: @Composable () -> Unit = {}) {
+    CinematicCatalogScreen(emptyList(), false, backdrop, onClose, {}, {}, onTab, loader, active, true,
+        revision, null, DiscoverGrid(programmes, saved, onOpen, onSave), false, status)
+}
+
+@Composable
+internal fun CinematicSearchScreen(entries: List<AppCatalogEntry>, programmes: List<ResumeItem>, saved: Set<String>, backdrop: String,
+    onClose: () -> Unit, onLaunch: (String) -> Unit, onHold: (String) -> Unit,
+    onOpen: (ResumeItem) -> Unit, onSave: (ResumeItem) -> Unit, onTab: (HomeTab) -> Unit,
+    loader: ComposeArtwork? = null, active: Boolean = true, canRequestFocus: Boolean = true,
+    revision: Int = 0, status: @Composable () -> Unit = {}) {
+    CinematicCatalogScreen(entries, false, backdrop, onClose, onLaunch, onHold, onTab, loader, active,
+        canRequestFocus, revision, null, DiscoverGrid(programmes, saved, onOpen, onSave), true, status)
+}
+
+@Composable
+@OptIn(ExperimentalFoundationApi::class)
+private fun CinematicCatalogScreen(entries: List<AppCatalogEntry>, history: Boolean, backdrop: String,
+    onClose: () -> Unit, onLaunch: (String) -> Unit, onHold: (String) -> Unit, onTab: (HomeTab) -> Unit,
+    loader: ComposeArtwork?, active: Boolean, canRequestFocus: Boolean, revision: Int,
+    quickSelection: List<String>?, discover: DiscoverGrid?, searchMode: Boolean, status: @Composable () -> Unit) {
+    var searchContent by rememberSaveable { mutableStateOf(false) }
+    val discovering = discover != null && (!searchMode || searchContent)
     val picking = quickSelection != null
     val selectionOrder = remember(quickSelection) { quickSelection.orEmpty().withIndex().associate { it.value to it.index + 1 } }
     val configuration = LocalConfiguration.current
@@ -89,19 +124,33 @@ internal fun CinematicAppsScreen(entries: List<AppCatalogEntry>, history: Boolea
     var category by rememberSaveable { mutableStateOf(AppCategory.ALL) }
     var type by rememberSaveable { mutableStateOf(AppTypeFilter.ALL) }
     var sort by rememberSaveable { mutableStateOf(if (history) AppGridSort.RECENT else AppGridSort.NAME_ASC) }
+    var contentKind by rememberSaveable { mutableStateOf(DiscoverKind.ALL) }
+    var contentSort by rememberSaveable { mutableStateOf(DiscoverSort.RECOMMENDED) }
+    var platform by rememberSaveable { mutableStateOf<String?>(null) }
+    val contentOrdered = remember(discover?.programmes, contentSort, locale) { orderDiscover(discover?.programmes.orEmpty(), contentSort, locale) }
+    val sources = remember(contentOrdered) { discoverSources(contentOrdered) }
+    val currentPlatform = platform?.takeIf { key -> sources.any { it.key == key } }
+    val contentVisible = remember(contentOrdered, query, currentPlatform, contentKind, discover?.saved) {
+        filterDiscover(contentOrdered, query, currentPlatform, contentKind, discover?.saved.orEmpty())
+    }
     // Read this state only in callbacks / the small footer. Moving focus must not
     // recompose the screen, recreate every tile modifier, or rebuild their text.
     val lastPackage = rememberSaveable { mutableStateOf<String?>(null) }
-    var focusZone by remember { mutableStateOf("grid") }
+    var focusZone by remember { mutableStateOf(if (searchMode) "search" else "grid") }
     var choice by remember { mutableStateOf<GridChoice?>(null) }
     val ordered = remember(entries, history, sort, locale) { orderAppCatalog(entries, history, sort, locale) }
     val visible = remember(ordered, query, category, type) { filterAppCatalog(ordered, query, category, type) }
-    val keys = remember(visible) { visible.map { it.app.packageName } }
+    val keys = remember(visible, contentVisible, discovering) {
+        if (discovering) contentVisible.map(::contentKey) else visible.map { it.app.packageName }
+    }
     val requesters = remember(keys) { keys.associateWith { FocusRequester() } }
     val navFocus = remember { FocusRequester() }
     val searchFocus = remember { FocusRequester() }
     val categoryRequesters = remember { AppCategory.entries.associateWith { FocusRequester() } }
-    val categoryFocus = categoryRequesters.getValue(category)
+    val contentRequesters = remember { DiscoverKind.entries.associateWith { FocusRequester() } }
+    val modeRequesters = remember { listOf(FocusRequester(), FocusRequester()) }
+    val categoryFocus = if (searchMode) modeRequesters[if (searchContent) 1 else 0]
+        else if (discovering) contentRequesters.getValue(contentKind) else categoryRequesters.getValue(category)
     val emptyFocus = remember { FocusRequester() }
     val tileFocus = requesters[keys.firstOrNull()] ?: emptyFocus
     val filterFocus = remember { FocusRequester() }
@@ -113,6 +162,16 @@ internal fun CinematicAppsScreen(entries: List<AppCatalogEntry>, history: Boolea
     val density = LocalDensity.current
     val rtl = LocalLayoutDirection.current == LayoutDirection.Rtl
     var navigationTask by remember { mutableStateOf<Job?>(null) }
+    val criteria = listOf(query, category.name, type.name, sort.name, contentKind.name, contentSort.name, currentPlatform.orEmpty(), searchContent.toString())
+    var lastCriteria by rememberSaveable { mutableStateOf(criteria) }
+    LaunchedEffect(criteria) {
+        if (criteria != lastCriteria) {
+            lastCriteria = criteria
+            lastPackage.value = null
+            navigationTask?.cancel()
+            grid.scrollToItem(0)
+        }
+    }
     fun moveGrid(target: Int, columns: Int) {
         navigationTask?.cancel()
         val info = grid.layoutInfo
@@ -123,7 +182,7 @@ internal fun CinematicAppsScreen(entries: List<AppCatalogEntry>, history: Boolea
         val start = info.viewportStartOffset + info.beforeContentPadding
         val end = info.viewportEndOffset - info.afterContentPadding
         val distance = CinemaPerformance.minimalScroll((top - start).toFloat(), reference.size.height.toFloat(), (end - start).toFloat())
-        val requester = requesters.getValue(visible[target].app.packageName)
+        val requester = requesters.getValue(keys[target])
         if (item != null && distance == 0f) requester.requestFocus()
         else navigationTask = scope.launch {
             grid.scrollBy(distance)
@@ -133,11 +192,11 @@ internal fun CinematicAppsScreen(entries: List<AppCatalogEntry>, history: Boolea
     }
     fun focusGrid() {
         scope.launch {
-            if (visible.isEmpty()) { backFocus.requestFocus(); return@launch }
-            val anchorIndex = visible.indexOfFirst { it.app.packageName == lastPackage.value }.coerceAtLeast(0)
+            if (keys.isEmpty()) { if (searchMode) searchFocus.requestFocus() else backFocus.requestFocus(); return@launch }
+            val anchorIndex = keys.indexOf(lastPackage.value).coerceAtLeast(0)
             if (grid.layoutInfo.visibleItemsInfo.none { it.index == anchorIndex }) grid.scrollToItem(anchorIndex)
             withFrameNanos { }
-            requesters.getValue(visible[anchorIndex].app.packageName).requestFocus()
+            requesters.getValue(keys[anchorIndex]).requestFocus()
         }
     }
     LaunchedEffect(canRequestFocus, active, choice == null, keys) {
@@ -146,15 +205,30 @@ internal fun CinematicAppsScreen(entries: List<AppCatalogEntry>, history: Boolea
             focusGrid()
         }
     }
+    LaunchedEffect(canRequestFocus, active, choice == null) {
+        if (searchMode && active && canRequestFocus && choice == null && focusZone == "search") {
+            withFrameNanos { }
+            searchFocus.requestFocus()
+        }
+    }
     val imeVisible = WindowInsets.ime.getBottom(LocalDensity.current) > 0
     BackHandler {
-        if (imeVisible) { keyboard?.hide(); categoryFocus.requestFocus() }
+        // Some TV IMEs resize the window without exposing IME insets. Leaving
+        // the editor must still dismiss typing before closing the catalogue.
+        if (imeVisible || focusZone == "search") {
+            keyboard?.hide()
+            focusZone = "category"
+            categoryFocus.requestFocus()
+        }
         else onClose()
     }
     val window = LocalWindowInfo.current.containerSize
     val constrained = rememberConstrainedTv()
     val artSize = remember(window, constrained) { CinemaPerformance.backdropSize(window.width, window.height, constrained) }
-    Box(Modifier.fillMaxSize().background(VortexInk).testTag(if (picking) "quick-launch-editor" else if (history) "history-screen" else "all-apps-screen")) {
+    val wide = window.width / density.density >= 744
+    val columns = if (discovering) (if (wide) 5 else 4) else if (wide) 7 else 5
+    val rows = if (discovering) 2 else if (density.fontScale > 1.1f) 3 else 4
+    Box(Modifier.fillMaxSize().background(VortexInk).testTag(if (searchMode) "search-screen" else if (discovering) "discover-screen" else if (picking) "quick-launch-editor" else if (history) "history-screen" else "all-apps-screen")) {
         CinematicArt(backdrop, loader, active, revision, Modifier.fillMaxSize(), retain = false, size = artSize)
         Box(Modifier.fillMaxSize().drawWithCache {
             val shade = Brush.verticalGradient(listOf(Color(0xa8080d1b), Color(0xdc080d1b), Color(0xf5080d1b)))
@@ -169,13 +243,14 @@ internal fun CinematicAppsScreen(entries: List<AppCatalogEntry>, history: Boolea
             }
         })
         Column(Modifier.fillMaxSize().padding(horizontal = 32.dp, vertical = 16.dp)) {
-            TopNavBar(HomeTab.HOME, navFocus, onTab, { searchFocus.requestFocus() }, status, compact = true)
+            TopNavBar(if (searchMode) HomeTab.SEARCH else if (discovering) HomeTab.DISCOVER else HomeTab.HOME,
+                navFocus, onTab, { searchFocus.requestFocus() }, status, compact = true)
             Spacer(Modifier.height(10.dp))
             Row(Modifier.fillMaxWidth().height(42.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 val interactions = remember { MutableInteractionSource() }
                 val searchFocused by interactions.collectIsFocusedAsState()
                 val shape = RoundedCornerShape(20.dp)
-                BasicTextField(query, { query = it }, Modifier.weight(1f).fillMaxHeight()
+                BasicTextField(query, { query = it; focusZone = "search" }, Modifier.weight(1f).fillMaxHeight()
                     .testTag("app-grid-search").focusRequester(searchFocus)
                     .onFocusChanged { if (it.isFocused) focusZone = "search" }
                     .onPreviewKeyEvent {
@@ -196,7 +271,7 @@ internal fun CinematicAppsScreen(entries: List<AppCatalogEntry>, history: Boolea
                         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                             SearchSymbol()
                             Box(Modifier.weight(1f)) {
-                                if (query.isEmpty()) Text(stringResource(if (history) R.string.vortex_grid_history_search else R.string.vortex_grid_search),
+                                if (query.isEmpty()) Text(stringResource(if (searchMode) R.string.vortex_search_grid_hint else if (discovering) R.string.vortex_discover_search else if (history) R.string.vortex_grid_history_search else R.string.vortex_grid_search),
                                     fontSize = 14.sp, color = VortexMuted, maxLines = 1, overflow = TextOverflow.Ellipsis)
                                 field()
                             }
@@ -206,12 +281,15 @@ internal fun CinematicAppsScreen(entries: List<AppCatalogEntry>, history: Boolea
                             }
                         }
                     })
-                CinemaButton(stringResource(R.string.vortex_grid_filter, stringResource(type.labelRes)) + " ▾", { choice = GridChoice.FILTER },
-                    Modifier.width(136.dp).fillMaxHeight().testTag("app-grid-filter").focusRequester(filterFocus)
+                val sourceLabel = sources.firstOrNull { it.key == currentPlatform }?.let { it.label ?: stringResource(R.string.vortex_content_platform_unknown) }
+                    ?: stringResource(R.string.vortex_grid_category_all)
+                CinemaButton((if (discovering) stringResource(R.string.vortex_content_platform, sourceLabel)
+                    else stringResource(R.string.vortex_grid_filter, stringResource(type.labelRes))) + " ▾", { focusZone = "filter"; choice = GridChoice.FILTER },
+                    Modifier.width(if (discovering || searchMode) 170.dp else 136.dp).fillMaxHeight().testTag("app-grid-filter").focusRequester(filterFocus)
                         .onFocusChanged { if (it.isFocused) focusZone = "filter" },
                     contentPadding = PaddingValues(horizontal = 9.dp, vertical = 3.dp))
-                CinemaButton(stringResource(R.string.vortex_grid_sort, stringResource(sort.labelRes)) + " ▾", { choice = GridChoice.SORT },
-                    Modifier.width(156.dp).fillMaxHeight().testTag("app-grid-sort").focusRequester(sortFocus)
+                CinemaButton(stringResource(R.string.vortex_grid_sort, stringResource(if (discovering) contentSort.labelRes else sort.labelRes)) + " ▾", { focusZone = "sort"; choice = GridChoice.SORT },
+                    Modifier.width(if (discovering || searchMode) 180.dp else 156.dp).fillMaxHeight().testTag("app-grid-sort").focusRequester(sortFocus)
                         .onFocusChanged { if (it.isFocused) focusZone = "sort" },
                     contentPadding = PaddingValues(horizontal = 9.dp, vertical = 3.dp))
                 CinemaButton(stringResource(if (picking) R.string.vortex_quick_launch_done else R.string.vortex_grid_close), onClose,
@@ -219,17 +297,43 @@ internal fun CinematicAppsScreen(entries: List<AppCatalogEntry>, history: Boolea
                     contentPadding = PaddingValues(horizontal = 6.dp, vertical = 3.dp))
             }
             Spacer(Modifier.height(8.dp))
-            Text(stringResource(if (picking) R.string.vortex_quick_launch else if (history) R.string.vortex_history else R.string.vortex_all_apps), color = Color.White,
+            Text(stringResource(if (searchMode) R.string.vortex_search_grid_title else if (discovering) R.string.vortex_nav_discover else if (picking) R.string.vortex_quick_launch else if (history) R.string.vortex_history else R.string.vortex_all_apps), color = Color.White,
                 fontSize = 22.sp, lineHeight = 26.sp, fontWeight = FontWeight.SemiBold)
             Text(if (picking) stringResource(R.string.vortex_quick_launch_choose, quickSelection.orEmpty().size, QUICK_LAUNCH_LIMIT)
-                else stringResource(if (history) R.string.vortex_grid_history_subtitle else R.string.vortex_grid_all_subtitle),
+                else stringResource(if (searchMode) R.string.vortex_search_grid_subtitle else if (discovering) R.string.vortex_discover_subtitle else if (history) R.string.vortex_grid_history_subtitle else R.string.vortex_grid_all_subtitle),
                 fontSize = 11.sp, lineHeight = 15.sp, color = VortexMuted, maxLines = 1, overflow = TextOverflow.Ellipsis)
             Spacer(Modifier.height(8.dp))
-            Row(Modifier.fillMaxWidth().height(32.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                AppCategory.entries.forEach { item ->
-                    CinemaButton(stringResource(item.labelRes), { category = item },
-                        Modifier.fillMaxHeight().testTag("app-grid-category:${item.name}")
-                            .focusRequester(categoryRequesters.getValue(item))
+            val categoryRow = Modifier.fillMaxWidth().height(if (searchMode) 40.dp else 32.dp)
+            Row(if (searchMode) categoryRow.horizontalScroll(rememberScrollState()).padding(3.dp) else categoryRow,
+                verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                if (searchMode) {
+                    listOf(R.string.vortex_applications, R.string.vortex_search_grid_content).forEachIndexed { index, labelRes ->
+                        val selectedMode = searchContent == (index == 1)
+                        CinemaButton(stringResource(R.string.vortex_search_grid_tab_count, stringResource(labelRes),
+                            if (index == 0) visible.size else contentVisible.size), {
+                            focusZone = "category"; searchContent = index == 1
+                        }, Modifier.fillMaxHeight().testTag(if (index == 0) "search-mode:apps" else "search-mode:content")
+                            .focusRequester(modeRequesters[index]).semantics { selected = selectedMode }
+                            .onPreviewKeyEvent {
+                                if (it.type != KeyEventType.KeyDown) false else when (it.key) {
+                                    Key.DirectionUp -> { searchFocus.requestFocus(); true }
+                                    Key.DirectionDown -> { focusZone = "grid"; focusGrid(); true }
+                                    else -> false
+                                }
+                            }, primary = selectedMode, contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp))
+                    }
+                    Box(Modifier.width(1.dp).height(23.dp).background(Color(0x667a86a8)))
+                }
+                val categories = if (discovering) DiscoverKind.entries.map { it.name to it.labelRes }
+                    else AppCategory.entries.map { it.name to it.labelRes }
+                categories.forEachIndexed { index, (name, label) ->
+                    CinemaButton(stringResource(label), {
+                        focusZone = "category"
+                        if (discovering) contentKind = DiscoverKind.entries[index] else category = AppCategory.entries[index]
+                    },
+                        Modifier.fillMaxHeight().testTag("app-grid-category:$name")
+                            .focusRequester(if (discovering) contentRequesters.getValue(DiscoverKind.entries[index])
+                                else categoryRequesters.getValue(AppCategory.entries[index]))
                             .onFocusChanged { if (it.isFocused) focusZone = "category" }
                             .onPreviewKeyEvent {
                                 if (it.type != KeyEventType.KeyDown) false else when (it.key) {
@@ -237,74 +341,93 @@ internal fun CinematicAppsScreen(entries: List<AppCatalogEntry>, history: Boolea
                                     Key.DirectionDown -> { focusZone = "grid"; focusGrid(); true }
                                     else -> false
                                 }
-                            }, primary = category == item, contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp))
+                            }, primary = if (discovering) contentKind.name == name else category.name == name,
+                        contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp))
                 }
             }
             Spacer(Modifier.height(8.dp))
             BoxWithConstraints(Modifier.weight(1f).fillMaxWidth()) {
-                val columns = if (maxWidth >= 680.dp) 7 else 5
-                val rows = if (LocalDensity.current.fontScale > 1.1f) 3 else 4
                 val tileHeight = ((maxHeight - 16.dp - 10.dp * (rows - 1)) / rows).coerceAtLeast(60.dp)
-                if (visible.isEmpty()) {
+                if (keys.isEmpty()) {
                     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                        Text(stringResource(if (history && ordered.isEmpty()) R.string.vortex_grid_history_empty else R.string.vortex_grid_no_results),
+                        Text(stringResource(if (discovering) {
+                            if (contentOrdered.isEmpty()) R.string.vortex_discover_grid_empty
+                            else if (contentKind == DiscoverKind.SAVED) R.string.vortex_list_empty else R.string.vortex_discover_no_results
+                        } else if (history && ordered.isEmpty()) R.string.vortex_grid_history_empty else R.string.vortex_grid_no_results),
                             color = VortexMuted, fontSize = 16.sp, modifier = Modifier.testTag("app-grid-empty"))
                     }
                 } else CompositionLocalProvider(LocalBringIntoViewSpec provides GridViewport) { LazyVerticalGrid(GridCells.Fixed(columns), Modifier.fillMaxSize().testTag("app-grid")
                     .focusRestorer(tileFocus).focusGroup(), state = grid, contentPadding = PaddingValues(8.dp),
                     horizontalArrangement = Arrangement.spacedBy(10.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-                    itemsIndexed(visible, key = { _, entry -> entry.app.packageName }, contentType = { _, _ -> "app" }) { index, entry ->
-                        val visit = if (history) formatVisit(entry.visitedAtMillis, dateFormatter)
-                            ?: stringResource(R.string.vortex_grid_time_unknown) else null
-                        AppGridTile(entry, visit, loader, active, revision, { onLaunch(entry.app.packageName) },
-                            { onHold(entry.app.packageName) }, Modifier.height(tileHeight)
-                                .focusRequester(requesters.getValue(entry.app.packageName))
-                                .onFocusChanged { if (it.isFocused) { lastPackage.value = entry.app.packageName; focusZone = "grid" } }
+                    itemsIndexed(keys, key = { _, key -> key }, contentType = { _, _ -> if (discovering) "programme" else "app" }) { index, key ->
+                        val input = Modifier.height(tileHeight)
+                                .focusRequester(requesters.getValue(key))
+                                .onFocusChanged { if (it.isFocused) { lastPackage.value = key; focusZone = "grid" } }
                                 .onPreviewKeyEvent {
                                     if (it.type != KeyEventType.KeyDown) false else when (it.key) {
                                         Key.DirectionUp -> {
                                             if (index < columns) categoryFocus.requestFocus()
-                                            else moveGrid(gridNeighbour(index, visible.size, columns, 0, -1), columns)
+                                            else moveGrid(gridNeighbour(index, keys.size, columns, 0, -1), columns)
                                             true
                                         }
-                                        Key.DirectionDown -> { moveGrid(gridNeighbour(index, visible.size, columns, 0, 1), columns); true }
-                                        Key.DirectionLeft -> { moveGrid(gridNeighbour(index, visible.size, columns, if (rtl) 1 else -1, 0), columns); true }
-                                        Key.DirectionRight -> { moveGrid(gridNeighbour(index, visible.size, columns, if (rtl) -1 else 1, 0), columns); true }
+                                        Key.DirectionDown -> { moveGrid(gridNeighbour(index, keys.size, columns, 0, 1), columns); true }
+                                        Key.DirectionLeft -> { moveGrid(gridNeighbour(index, keys.size, columns, if (rtl) 1 else -1, 0), columns); true }
+                                        Key.DirectionRight -> { moveGrid(gridNeighbour(index, keys.size, columns, if (rtl) -1 else 1, 0), columns); true }
                                         else -> false
                                     }
-                                }, selectionMode = picking, selectionOrder = selectionOrder[entry.app.packageName])
+                                }
+                        if (discovering && discover != null) {
+                            val item = contentVisible[index]
+                            DiscoverCard(item, isContentSaved(item, discover.saved), loader, active, revision,
+                                { discover.onOpen(item) }, { discover.onSave(item) }, input)
+                        } else {
+                            val entry = visible[index]
+                            val visit = if (history) formatVisit(entry.visitedAtMillis, dateFormatter)
+                                ?: stringResource(R.string.vortex_grid_time_unknown) else null
+                            AppGridTile(entry, visit, loader, active, revision, { onLaunch(entry.app.packageName) },
+                                { onHold(entry.app.packageName) }, input, selectionMode = picking, selectionOrder = selectionOrder[entry.app.packageName])
+                        }
                     }
                 } }
             }
-            GridFooter(visible, lastPackage)
+            GridFooter(keys, lastPackage, columns, rows, discovering)
         }
     }
     choice?.let { selectedChoice ->
-        val labels = if (selectedChoice == GridChoice.FILTER) AppTypeFilter.entries.map { stringResource(it.labelRes) }
+        val labels = if (discovering) {
+            if (selectedChoice == GridChoice.FILTER) listOf(stringResource(R.string.vortex_grid_category_all)) +
+                sources.map { it.label ?: stringResource(R.string.vortex_content_platform_unknown) }
+            else DiscoverSort.entries.map { stringResource(it.labelRes) }
+        } else if (selectedChoice == GridChoice.FILTER) AppTypeFilter.entries.map { stringResource(it.labelRes) }
             else AppGridSort.entries.map { stringResource(it.labelRes) }
-        val current = if (selectedChoice == GridChoice.FILTER) type.ordinal else sort.ordinal
+        val current = if (discovering) {
+            if (selectedChoice == GridChoice.FILTER) sources.indexOfFirst { it.key == currentPlatform } + 1 else contentSort.ordinal
+        } else if (selectedChoice == GridChoice.FILTER) type.ordinal else sort.ordinal
         fun dismiss() {
             choice = null
             scope.launch { withFrameNanos { }; if (selectedChoice == GridChoice.FILTER) filterFocus.requestFocus() else sortFocus.requestFocus() }
         }
-        GridChoiceDialog(stringResource(if (selectedChoice == GridChoice.FILTER) R.string.vortex_grid_choose_filter else R.string.vortex_grid_choose_sort),
+        GridChoiceDialog(stringResource(if (discovering) {
+            if (selectedChoice == GridChoice.FILTER) R.string.vortex_discover_choose_platform else R.string.vortex_discover_choose_sort
+        } else if (selectedChoice == GridChoice.FILTER) R.string.vortex_grid_choose_filter else R.string.vortex_grid_choose_sort),
             labels, current, ::dismiss) { index ->
-            if (selectedChoice == GridChoice.FILTER) type = AppTypeFilter.entries[index] else sort = AppGridSort.entries[index]
+            if (discovering) {
+                if (selectedChoice == GridChoice.FILTER) platform = sources.getOrNull(index - 1)?.key else contentSort = DiscoverSort.entries[index]
+            } else if (selectedChoice == GridChoice.FILTER) type = AppTypeFilter.entries[index] else sort = AppGridSort.entries[index]
             dismiss()
         }
     }
 }
 
 @Composable
-private fun GridFooter(visible: List<AppCatalogEntry>, selected: State<String?>) {
-    val columns = if (LocalWindowInfo.current.containerSize.width / LocalDensity.current.density >= 744) 7 else 5
-    val rows = if (LocalDensity.current.fontScale > 1.1f) 3 else 4
-    val pages = ((visible.size + columns * rows - 1) / (columns * rows)).coerceAtLeast(1)
-    val page by remember(visible, columns, rows) { derivedStateOf {
-        (visible.indexOfFirst { it.app.packageName == selected.value }.coerceAtLeast(0) / (columns * rows)).coerceAtMost(pages - 1)
+private fun GridFooter(keys: List<String>, selected: State<String?>, columns: Int, rows: Int, discovering: Boolean) {
+    val pages = ((keys.size + columns * rows - 1) / (columns * rows)).coerceAtLeast(1)
+    val page by remember(keys, columns, rows) { derivedStateOf {
+        (keys.indexOf(selected.value).coerceAtLeast(0) / (columns * rows)).coerceAtMost(pages - 1)
     } }
     Row(Modifier.fillMaxWidth().height(22.dp), verticalAlignment = Alignment.CenterVertically) {
-        Text(pluralStringResource(R.plurals.vortex_app_count, visible.size, visible.size), fontSize = 10.sp, color = VortexMuted)
+        Text(if (discovering) stringResource(R.string.vortex_discover_count, keys.size)
+            else pluralStringResource(R.plurals.vortex_app_count, keys.size, keys.size), fontSize = 10.sp, color = VortexMuted)
         Spacer(Modifier.weight(1f))
         PositionDots(page, pages)
         Spacer(Modifier.width(10.dp))
@@ -410,12 +533,14 @@ private fun GridChoiceDialog(title: String, labels: List<String>, selected: Int,
     Dialog(close, DialogProperties(usePlatformDefaultWidth = false)) {
         Column(Modifier.width(310.dp).background(VortexInk, RoundedCornerShape(22.dp)).padding(22.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
             Text(title, fontSize = 20.sp, color = Color.White)
-            labels.forEachIndexed { index, label ->
+            LazyColumn(Modifier.fillMaxWidth().heightIn(max = 330.dp).testTag("grid-choice-list"),
+                state = rememberLazyListState(initialFirstVisibleItemIndex = selected.coerceIn(labels.indices)),
+                verticalArrangement = Arrangement.spacedBy(10.dp)) { itemsIndexed(labels) { index, label ->
                 CinemaButton(label, { pick(index) }, Modifier.fillMaxWidth().testTag("app-grid-choice:$index")
                     .then(if (index == selected) Modifier.focusRequester(focus) else Modifier), selected = index == selected)
-            }
+            } }
         }
-        LaunchedEffect(Unit) { focus.requestFocus() }
+        LaunchedEffect(Unit) { withFrameNanos { }; focus.requestFocus() }
     }
 }
 
@@ -424,4 +549,24 @@ private fun GridChoiceDialog(title: String, labels: List<String>, selected: Int,
 internal fun CinematicAppsPreview() {
     val apps = CinematicSamples.apps.map { nl.neerdael.backdrop_launcher.core.LauncherApp(it.packageName, it.label, "1", false, false, null, it.artwork) }
     MaterialTheme { CinematicAppsScreen(buildAppCatalog(apps, emptyList(), emptyMap()), false, CinematicSamples.featured.artwork!!, {}, {}, {}, {}) }
+}
+
+@Preview(name = "O.E tv · Discover", locale = "tr", device = "spec:width=1920px,height=1080px,dpi=320")
+@Preview(name = "O.E tv · Discover RTL", locale = "ar", device = "spec:width=1920px,height=1080px,dpi=320")
+@Composable
+internal fun CinematicDiscoverPreview() {
+    val sample = localizedSamples()
+    val items = sample.watching.mapIndexed { index, item -> item.copy(id = index.toLong(),
+        packageName = "sample:video", intentUri = "sample://$index", sourceName = stringResource(R.string.vortex_sample_badge), continuation = false) }
+    MaterialTheme { CinematicDiscoverScreen(items, emptySet(), sample.featured.artwork!!, {}, {}, {}, {}) }
+}
+
+@Preview(name = "O.E tv · Search", locale = "tr", device = "spec:width=1920px,height=1080px,dpi=320")
+@Preview(name = "O.E tv · Search RTL", locale = "ar", device = "spec:width=1920px,height=1080px,dpi=320")
+@Composable
+internal fun CinematicSearchPreview() {
+    val sample = localizedSamples()
+    val apps = sample.apps.map { nl.neerdael.backdrop_launcher.core.LauncherApp(it.packageName, it.label, "1", true, false, null, it.artwork) }
+    MaterialTheme { CinematicSearchScreen(buildAppCatalog(apps, emptyList(), emptyMap()), sample.watching,
+        emptySet(), sample.featured.artwork!!, {}, {}, {}, {}, {}, {}) }
 }

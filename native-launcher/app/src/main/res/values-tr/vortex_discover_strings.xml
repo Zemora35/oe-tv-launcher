@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="vortex_discover_recommended">Önerilenler</string>
+    <string name="vortex_discover_sort_default">Öneri sırası</string>
+    <string name="vortex_discover_search">Film, dizi veya video ara</string>
+    <string name="vortex_discover_subtitle">TV uygulamalarınızdan içerikler. OK: aç · Uzun OK: Listem’e ekle veya çıkar.</string>
+    <string name="vortex_discover_grid_empty">Desteklenen TV uygulamaları içerik paylaştığında burada görünür.</string>
+    <string name="vortex_discover_no_results">Aramanızla veya filtrelerinizle eşleşen içerik yok.</string>
+    <string name="vortex_discover_count">İçerik: %1$d</string>
+    <string name="vortex_discover_choose_platform">Platform seç</string>
+    <string name="vortex_discover_choose_sort">İçerikleri sırala</string>
+</resources>

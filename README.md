@@ -11,6 +11,13 @@ TV/other-app filters and sorting. History shows each app's last successful
 opening through O.E tv, formatted in the app locale and TV time zone.
 [Application grid and history](docs/development/apps-grid.md).
 
+Discover uses the same fullscreen frame for programme covers, with platform
+filters, title sorting, search and long-OK My List actions.
+[Discover grid](docs/development/discover-grid.md).
+
+Search also uses this frame, with one query shared between application and
+programme result tabs. [Fullscreen Search](docs/development/search-grid.md).
+
 Personal edition by Oğuzhan Eklidağ. The home header displays **O.E tv** with
 a static handwritten signature beneath it. The Android app label uses the same
 name; the existing package identity and Vortex build variant are retained.
@@ -77,7 +84,8 @@ automatically change the television's default Home app.
 
 Use the `benchmarkDebug` variant and an explicitly selected Android TV emulator
 for `QuickLaunchUiTest`, `InternationalHomeTest` and `VortexRemoteTest`. The latest
-local validation passed 54 focused JVM tests and 29 Android UI checks. A physical
+local validation passed 58 focused JVM tests and 38 distinct Android UI checks,
+including a separate five-test Search rerun through the Activity Back dispatcher. A physical
 TCL TV check verified favourite persistence, app launch and returning focus;
 see [Quick Launch validation](docs/development/quick-launch.md). Test apps, local screenshots,
 APK outputs and `.tv-test/` are ignored by Git. The

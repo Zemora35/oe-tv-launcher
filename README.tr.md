@@ -18,6 +18,14 @@ ve sıralama içeren parlak kart ızgarasını kullanır. Geçmişte O.E tv üze
 açılan uygulamaların son ziyaret tarihi ve saati görünür. Eski tarihsiz kayıtlar
 ayrıca belirtilir. [Izgara ve geçmiş ayrıntıları](docs/development/apps-grid.md).
 
+**Keşfet** de artık aynı tam ekran düzendedir: içerik kapakları, platform
+filtresi, arama, sıralama ve Listem sekmesi bulunur. OK içeriği açar; uzun OK
+Listem’e ekler veya çıkarır. [Keşfet ızgarası](docs/development/discover-grid.md).
+
+**Ara** seçeneği de tam ekran kart ızgarası kullanır. Aynı arama metniyle
+Uygulamalar ve İçerikler sekmeleri arasında geçilir; kumanda odağı başlangıçta
+arama alanındadır. [Arama ekranı](docs/development/search-grid.md).
+
 Yerleşik film arka planlarında görsel, film adı ve kısa açıklama birlikte
 değişir. Öne çıkan içerik 30 saniyede bir görseli, açıklaması ve platformuyla
 birlikte yenilenir; › düğmesiyle elle de değiştirilebilir. Kumanda hero

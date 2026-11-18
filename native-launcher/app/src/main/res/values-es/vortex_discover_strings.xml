@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="vortex_discover_recommended">Recomendados</string>
+    <string name="vortex_discover_sort_default">Recomendado</string>
+    <string name="vortex_discover_search">Buscar películas, series o vídeos</string>
+    <string name="vortex_discover_subtitle">Contenido de tus aplicaciones de TV. OK: abrir · Mantén OK: añadir o quitar de Mi lista.</string>
+    <string name="vortex_discover_grid_empty">El contenido aparece cuando las aplicaciones de TV compatibles lo comparten.</string>
+    <string name="vortex_discover_no_results">No hay contenido que coincida con tu búsqueda o filtros.</string>
+    <string name="vortex_discover_count">Títulos: %1$d</string>
+    <string name="vortex_discover_choose_platform">Elegir plataforma</string>
+    <string name="vortex_discover_choose_sort">Ordenar contenido</string>
+</resources>

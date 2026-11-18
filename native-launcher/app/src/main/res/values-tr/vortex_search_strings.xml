@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="vortex_search_grid_title">Arama</string>
+    <string name="vortex_search_grid_subtitle">Yüklü uygulamalarda ve TV ile paylaşılan içeriklerde arayın.</string>
+    <string name="vortex_search_grid_hint">Uygulama, film, dizi veya video ara</string>
+    <string name="vortex_search_grid_content">İçerikler</string>
+    <string name="vortex_search_grid_tab_count">%1$s (%2$d)</string>
+</resources>

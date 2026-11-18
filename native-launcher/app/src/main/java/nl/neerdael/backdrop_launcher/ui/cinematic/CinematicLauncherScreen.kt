@@ -67,6 +67,8 @@ internal fun CinematicLauncherScreen(home: HomeData, library: LibrarySnapshot, p
     var resumeKey by remember { mutableStateOf(apps[index].program?.let(::contentKey)) }
     var settings by remember { mutableStateOf<SettingsRoute?>(null) }
     var panel by remember { mutableStateOf<CinemaPanel?>(null) }
+    var detailProgramme by remember { mutableStateOf<ResumeItem?>(null) }
+    var infoReturnPanel by remember { mutableStateOf<CinemaPanel?>(null) }
     var heroFocused by remember { mutableStateOf(false) }
     var lastZone by remember { mutableStateOf("dock") }
     val available = remember(scene.rows, scene.watchNext, home.recommendations) {
@@ -96,8 +98,9 @@ internal fun CinematicLauncherScreen(home: HomeData, library: LibrarySnapshot, p
     var quickDraft by remember { mutableStateOf(emptyList<String>()) }
     var quickSaving by remember { mutableStateOf(false) }
     val metadata = remember(context) { AppCatalogMetadata(context) }
-    val facts by produceState<Map<String, AppFacts>>(emptyMap(), library.apps, appGrid) {
-        if (appGrid) value = withContext(Dispatchers.IO) { metadata.read(library.apps) }
+    val needsAppFacts = appGrid || panel == CinemaPanel.SEARCH
+    val facts by produceState<Map<String, AppFacts>>(emptyMap(), library.apps, needsAppFacts) {
+        if (needsAppFacts) value = withContext(Dispatchers.IO) { metadata.read(library.apps) }
     }
     val legacyHistory = remember(preferenceVersion) { prefs.strings("native.vortex.history") }
     val catalog = remember(library.apps, legacyHistory, facts) { buildAppCatalog(library.apps, legacyHistory, facts) }
@@ -111,6 +114,13 @@ internal fun CinematicLauncherScreen(home: HomeData, library: LibrarySnapshot, p
         }
     }
     val identities = remember(scene.rows) { scene.rows.map { it.id to it.apps.map(AppTile::key) } }
+
+    fun toggleContentSaved(item: ResumeItem) {
+        val id = contentKey(item)
+        saved = if (isContentSaved(item, saved)) saved - id - "id:${item.id}" else saved + id
+        val snapshot = saved.toList().take(200)
+        scope.launch(Dispatchers.IO) { prefs.putStrings("native.vortex.my_list", snapshot) }
+    }
 
     fun editQuickLaunch() {
         quickDraft = quickApps.map { it.packageName }
@@ -152,13 +162,14 @@ internal fun CinematicLauncherScreen(home: HomeData, library: LibrarySnapshot, p
         val r = scene.rows.indexOfFirst { it.id == row?.id }
         if (r >= 0 && next < row!!.apps.size) selection.remember(scene, r, next)
     }
-    fun watchOptions() {
+    fun watchOptionsFor(title: String) {
         try { context.startActivity(Intent(Intent.ACTION_VIEW, android.net.Uri.parse(
-            watchOptionsUrl(featured.title, resources.configuration.let {
+            watchOptionsUrl(title, resources.configuration.let {
                 @Suppress("DEPRECATION") if (android.os.Build.VERSION.SDK_INT >= 24) it.locales[0].language else it.locale.language
             })))) }
         catch (_: android.content.ActivityNotFoundException) { actions.message(resources.getString(R.string.vortex_content_no_browser)) }
     }
+    fun watchOptions() = watchOptionsFor(featured.title)
     fun step(delta: Int) {
         val reorder = moving
         if (reorder == null) chooseApp(VortexGeometry.step(index, delta, apps.size))
@@ -197,7 +208,7 @@ internal fun CinematicLauncherScreen(home: HomeData, library: LibrarySnapshot, p
                 settings = SettingsRoute("settings"); true
             } else false
         }) {
-            if (!appGrid) CinematicHomeScreen(featured, scene.backdrop, apps, index, quickApps,
+            if (!appGrid && panel != CinemaPanel.DISCOVER && panel != CinemaPanel.SEARCH) CinematicHomeScreen(featured, scene.backdrop, apps, index, quickApps,
                 "‹  $rowLabel  ›", focus, ::step, ::openApp,
                 onHold = { app ->
                     if (moving != null) moving = null
@@ -217,7 +228,7 @@ internal fun CinematicLauncherScreen(home: HomeData, library: LibrarySnapshot, p
                     }
                 }, onRows = { settings = SettingsRoute("rows") },
                 onWatch = { featured.playable?.let(actions::play) ?: watchOptions() },
-                onInfo = { panel = CinemaPanel.INFO },
+                onInfo = { detailProgramme = null; infoReturnPanel = null; panel = CinemaPanel.INFO },
                 onTab = { tab ->
                     lastZone = "nav"
                     when (tab) {
@@ -258,7 +269,36 @@ internal fun CinematicLauncherScreen(home: HomeData, library: LibrarySnapshot, p
                     close = { settings = null }, reorder = { id, name -> moving = id to name; appKey = name; settings = null })
             }
             panel?.let { title ->
-                if (appGrid) gridStates.SaveableStateProvider(title.name) {
+                if (title == CinemaPanel.DISCOVER || title == CinemaPanel.SEARCH) gridStates.SaveableStateProvider(title.name) {
+                    val content = remember(available, library.apps, resources, configuration) {
+                        val names = library.apps.associate { it.packageName to it.label }
+                        available.map { item -> item.copy(sourceName = names[item.packageName]
+                            ?: item.sourceName?.takeIf { it.isNotBlank() && it != item.packageName }
+                            ?: resources.getString(R.string.vortex_content_platform_unknown)) }
+                    }
+                    val openContent: (ResumeItem) -> Unit = { item ->
+                            if (!item.intentUri.isNullOrBlank() && !item.packageName.isNullOrBlank()) actions.play(item)
+                            else { detailProgramme = item; infoReturnPanel = title; panel = CinemaPanel.INFO }
+                    }
+                    val navigate: (HomeTab) -> Unit = { tab ->
+                            panel = when (tab) {
+                                HomeTab.HOME -> null
+                                HomeTab.DISCOVER -> CinemaPanel.DISCOVER
+                                HomeTab.MY_LIST -> CinemaPanel.MY_LIST
+                                HomeTab.SEARCH -> CinemaPanel.SEARCH
+                            }
+                    }
+                    if (title == CinemaPanel.SEARCH) CinematicSearchScreen(catalog, content, saved, featured.artwork ?: scene.backdrop,
+                        onClose = { panel = null }, onLaunch = actions::launch,
+                        onHold = { settings = SettingsRoute("app", packageName = it) },
+                        onOpen = openContent, onSave = ::toggleContentSaved, onTab = navigate,
+                        loader = artwork, active = active, canRequestFocus = settings == null, revision = artworkRevision,
+                        status = { StatusClock(style, active, compact = true) })
+                    else CinematicDiscoverScreen(content, saved, featured.artwork ?: scene.backdrop,
+                        onClose = { panel = null }, onOpen = openContent, onSave = ::toggleContentSaved, onTab = navigate,
+                        loader = artwork, active = active, revision = artworkRevision,
+                        status = { StatusClock(style, active, compact = true) })
+                } else if (appGrid) gridStates.SaveableStateProvider(title.name) {
                     val picking = title == CinemaPanel.QUICK_LAUNCH
                     CinematicAppsScreen(if (picking) catalog.filter { it.app.packageName != context.packageName } else catalog,
                         title == CinemaPanel.HISTORY, featured.artwork ?: scene.backdrop,
@@ -276,15 +316,12 @@ internal fun CinematicLauncherScreen(home: HomeData, library: LibrarySnapshot, p
                         }, loader = artwork, active = active, canRequestFocus = settings == null && !quickSaving,
                         revision = artworkRevision, quickSelection = if (picking) quickDraft else null,
                         status = { StatusClock(style, active, compact = true) })
-                } else CinemaBrowserPanel(title, library.apps.filter { !it.hidden }, available, featured, saved,
-                    close = { panel = null }, watchOptions = ::watchOptions, launch = { name ->
+                } else CinemaBrowserPanel(title, library.apps.filter { !it.hidden }, available,
+                    detailProgramme?.let { featuredContent(it, resources) } ?: featured, saved,
+                    close = { panel = if (title == CinemaPanel.INFO) infoReturnPanel else null },
+                    watchOptions = { watchOptionsFor(detailProgramme?.title ?: featured.title) }, launch = { name ->
                         panel = null; openApp(AppTile(name, library.apps.firstOrNull { it.packageName == name }?.label ?: name, null))
-                    }, play = { panel = null; actions.play(it) }, toggleSaved = { item ->
-                        val id = contentKey(item)
-                        saved = if (isContentSaved(item, saved)) saved - id - "id:${item.id}" else saved + id
-                        val snapshot = saved.toList().take(200)
-                        scope.launch(Dispatchers.IO) { prefs.putStrings("native.vortex.my_list", snapshot) }
-                    })
+                    }, play = { panel = null; actions.play(it) }, toggleSaved = ::toggleContentSaved)
             }
         }
         BackHandler(settings == null && panel == null) {

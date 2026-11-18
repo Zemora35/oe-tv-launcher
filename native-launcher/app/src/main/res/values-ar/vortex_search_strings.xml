@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="vortex_search_grid_title">البحث</string>
+    <string name="vortex_search_grid_subtitle">ابحث في التطبيقات المثبتة والمحتوى المشترك مع التلفاز.</string>
+    <string name="vortex_search_grid_hint">ابحث عن تطبيق أو فيلم أو مسلسل أو فيديو</string>
+    <string name="vortex_search_grid_content">المحتوى</string>
+    <string name="vortex_search_grid_tab_count">%1$s (%2$d)</string>
+</resources>

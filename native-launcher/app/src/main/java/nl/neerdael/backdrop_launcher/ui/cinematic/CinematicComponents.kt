@@ -117,7 +117,7 @@ internal fun TopNavBar(tab: HomeTab, focus: FocusRequester, onTab: (HomeTab) -> 
         Spacer(Modifier.width(12.dp))
         Row(Modifier.weight(1f), horizontalArrangement = Arrangement.spacedBy(8.dp)) { HomeTab.entries.forEach { item ->
             CinemaButton(stringResource(item.labelRes), { onTab(item) }, Modifier.weight(1f)
-                .then(if (item == HomeTab.HOME) Modifier.focusRequester(focus) else Modifier)
+                .then(if (item == tab) Modifier.focusRequester(focus) else Modifier)
                 .onPreviewKeyEvent { if (it.type == KeyEventType.KeyDown && it.key == Key.DirectionDown) { onDown(); true } else false },
                 selected = tab == item,
                 contentPadding = if (compact) PaddingValues(horizontal = 10.dp, vertical = 6.dp)

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="vortex_discover_recommended">Đề xuất</string>
+    <string name="vortex_discover_sort_default">Đề xuất</string>
+    <string name="vortex_discover_search">Tìm phim, chương trình hoặc video</string>
+    <string name="vortex_discover_subtitle">Nội dung từ ứng dụng TV. OK: mở · Giữ OK: thêm vào hoặc xóa khỏi Danh sách.</string>
+    <string name="vortex_discover_grid_empty">Nội dung xuất hiện khi ứng dụng TV hỗ trợ chia sẻ.</string>
+    <string name="vortex_discover_no_results">Không có nội dung phù hợp với tìm kiếm hoặc bộ lọc.</string>
+    <string name="vortex_discover_count">Nội dung: %1$d</string>
+    <string name="vortex_discover_choose_platform">Chọn nền tảng</string>
+    <string name="vortex_discover_choose_sort">Sắp xếp nội dung</string>
+</resources>

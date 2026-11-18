@@ -27,7 +27,7 @@ class LocaleCatalogTest {
 
     @Test fun allHomeTranslationsHaveCompleteKeysAndMatchingPlaceholders() {
         assertEquals(listOf("%1\$d", "%2\$s"), signature("%2\$s / %1\$d"))
-        listOf("vortex_strings.xml", "vortex_content_strings.xml", "vortex_grid_strings.xml", "vortex_playback_strings.xml").forEach(::validateCatalog)
+        listOf("vortex_strings.xml", "vortex_content_strings.xml", "vortex_grid_strings.xml", "vortex_playback_strings.xml", "vortex_discover_strings.xml", "vortex_search_strings.xml").forEach(::validateCatalog)
     }
 
     private fun validateCatalog(fileName: String) {
